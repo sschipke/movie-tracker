@@ -1,7 +1,16 @@
-import React, {Component} from 'react';
+
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
+
+//Importing Other Componets
+import Login from './Login/Login';
+import Nav from './Nav/Nav';
+import Main from './Main/Main';
+import Favorites from './Favorites/Favorites';
+import MoviePage from './MoviePage/MoviePage';
 import {getMovies} from '../apiCalls'
 import './App.css';
-
 class App extends Component { 
   constructor() {
     super()
@@ -19,25 +28,19 @@ class App extends Component {
     }
   }
 
-  render() {
+  render = () => {
     return (
       <div className="App">
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+        <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
+        <Route path='/' render={ () => <Nav /> } />
+        <Route exact path='/' render={ () => <Main /> } />
+        <Route exact path='/favorites' render={ () => <Favorites /> } />
+        <Route exact path='/movie/:id' render={ () => <MoviePage /> } />
+      </div> 
     );
   }
-
+  
 }
+
+
 export default App;

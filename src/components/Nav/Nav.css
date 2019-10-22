@@ -1,0 +1,44 @@
+header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  height:80px;
+}
+.header__logo {
+  font-size: 35px;
+  min-width: 250px;
+}
+.red {
+  color:red;
+}
+
+.header__nav {
+  width:500px;
+  display:flex;
+  
+}
+
+.NavLink{
+  text-decoration: none;
+  width:125px;
+  color:black;
+
+}
+
+.selectedLink {
+  text-transform: uppercase;
+}
+
+.NavLink:hover {
+  animation-name: btn-micro;
+  animation-duration:0.5s;
+}
+
+@keyframes btn-micro {
+  0% { transform: rotate(0deg)}
+  25%{ transform: rotate(5deg) }
+  50%{ transform: rotate(0deg) }
+  75%{ transform: rotate(-5deg) }
+  100%{transform: rotate(0deg)}
+
+}
