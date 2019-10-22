@@ -1,4 +1,4 @@
-//Importing Libraries and Frameworks
+
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
@@ -9,15 +9,23 @@ import Nav from './Nav/Nav';
 import Main from './Main/Main';
 import Favorites from './Favorites/Favorites';
 import MoviePage from './MoviePage/MoviePage';
-
+import {getMovies} from '../apiCalls'
 import './App.css';
+class App extends Component { 
+  constructor() {
+    super()
+    this.state = {
+      movies: []
+    }
+  }
 
-
-
-class App extends Component {
-
-  componentDidMount = () => {
-    //Initial Movie Fetch
+  async componentDidMount() {
+    try {
+      const data = await getMovies();
+      this.setState({movies:data})
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   render = () => {
@@ -31,6 +39,8 @@ class App extends Component {
       </div> 
     );
   }
+  
 }
+
 
 export default App;
