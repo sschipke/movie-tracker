@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+//Importing Libraries and Frameworks
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
+
+//Importing Other Componets
+import Login from './Login/Login';
+import Nav from './Nav/Nav';
+import Main from './Main/Main';
+import Favorites from './Favorites/Favorites';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends Component {
+
+  componentDidMount = () => {
+    //Initial Movie Fetch
+  }
+
+  render = () => {
+    return (
+      <div className="App">
+        <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
+        <Route path='/' render={ () => <Nav /> } />
+        <Route exact path='/' render={ () => <Main /> } />
+        <Route exact path='/favorites' render={ () => <Favorites /> } />
+      </div> 
+    );
+  }
 }
 
 export default App;
