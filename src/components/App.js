@@ -8,6 +8,7 @@ import Login from './Login/Login';
 import Nav from './Nav/Nav';
 import Main from './Main/Main';
 import Favorites from './Favorites/Favorites';
+import MoviePage from './MoviePage/MoviePage';
 
 import './App.css';
 
@@ -26,6 +27,7 @@ class App extends Component {
         <Route path='/' render={ () => <Nav /> } />
         <Route exact path='/' render={ () => <Main /> } />
         <Route exact path='/favorites' render={ () => <Favorites /> } />
+        <Route exact path='/movie/:id' render={ () => <MoviePage /> } />
       </div> 
     );
   }
