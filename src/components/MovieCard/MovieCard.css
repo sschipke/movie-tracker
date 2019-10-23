@@ -1,0 +1,12 @@
+.movie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 45vh;
+  margin: 10px;
+  width: 35vw;
+}
+.card_image {
+  height: 50%;
+  width: 100%;
+}
