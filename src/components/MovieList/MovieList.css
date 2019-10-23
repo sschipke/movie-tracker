@@ -1,0 +1,7 @@
+.section__movies {
+  display: flex;
+  /* justify-content: space-between; */
+  overflow-x: scroll;
+  height: 450px;
+  width: 100%;
+}
