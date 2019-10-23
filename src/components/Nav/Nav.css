@@ -8,6 +8,7 @@ header {
   font-size: 35px;
   min-width: 250px;
 }
+
 .red {
   color:red;
 }
@@ -15,14 +16,12 @@ header {
 .header__nav {
   width:500px;
   display:flex;
-  
 }
 
 .NavLink{
   text-decoration: none;
   width:125px;
   color:black;
-
 }
 
 .selectedLink {
@@ -33,6 +32,54 @@ header {
   animation-name: btn-micro;
   animation-duration:0.5s;
 }
+
+.user-avatar{
+  height:25px;
+}
+
+.header__user-menu{
+  margin-top:10px;
+  width:250px;  
+}
+.inner {
+  background: black;
+  color:white;
+  padding: 1em;
+  border-radius: 10px;
+  width: 250px;
+  clip-path: circle(10% at 90% 20%);
+  transition: all .5s ease-in-out;
+  cursor: pointer;
+}
+.inner:hover {
+  clip-path: circle(75%);
+  background: #00B6FF;
+}
+
+.inner h1 {
+  color: white;
+  margin: 0;
+}
+
+.inner p {
+  color: white;
+  font-size: .8rem;
+}
+
+.inner span {
+  float: right;
+  color: white;
+  font-weight: bold;
+  transition: color .5s;
+  position: relative;
+  margin-right: 4%;
+  }
+
+.inner:hover span {
+  color: rgba(255,255,255,0)
+}
+
+
 
 @keyframes btn-micro {
   0% { transform: rotate(0deg)}
