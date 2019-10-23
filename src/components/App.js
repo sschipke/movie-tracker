@@ -9,7 +9,7 @@ import Nav from './Nav/Nav';
 import Main from './Main/Main';
 import Favorites from './Favorites/Favorites';
 import MoviePage from './MoviePage/MoviePage';
-import {getMovies} from '../apiCalls'
+import {getMovies} from '../util/apiCalls'
 import './App.css';
 class App extends Component { 
   constructor() {
