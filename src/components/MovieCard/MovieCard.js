@@ -6,7 +6,7 @@ const MovieCard = ({movie}) => {
   return (
     <div className='movie'>
       <div className='card__Image'>
-        Image
+        <img alt="movie poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />
       </div>
       <div className='card__header'>
         {movie.title}
