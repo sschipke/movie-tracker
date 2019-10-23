@@ -4,7 +4,7 @@ import './MovieList.css';
 import { connect } from 'react-redux';
 
 const MovieList = ({movies}) => {
-  let allMovies = movies.map(movie => <MovieCard movie={movie} />)
+  let allMovies = movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
 
   return (allMovies)
 
