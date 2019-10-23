@@ -10,19 +10,23 @@ import Main from './Main/Main';
 import Favorites from './Favorites/Favorites';
 import MoviePage from './MoviePage/MoviePage';
 import {getMovies} from '../util/apiCalls'
+import {setMovies} from '../actions'
 import './App.css';
+import { connect } from 'react-redux';
 class App extends Component { 
-  constructor() {
-    super()
-    this.state = {
-      movies: []
-    }
-  }
+  // We shouldn't need state now with redux
+  // constructor() {
+  //   super()
+  //   this.state = {
+  //     movies: []
+  //   }
+  // }
 
   async componentDidMount() {
+    const {setMovies} = this.props;
     try {
       const data = await getMovies();
-      this.setState({movies:data})
+      setMovies(data)
     } catch(error) {
       console.log(error)
     }
@@ -39,8 +43,14 @@ class App extends Component {
       </div> 
     );
   }
-  
 }
 
+const mapStateToProps = state => ({
+  movies: state.movies
+})
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  setMovies: movies => dispatch(setMovies(movies))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps) (App)
