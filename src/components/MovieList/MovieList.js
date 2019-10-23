@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 const MovieList = ({movies}) => {
   let allMovies = movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
 
-  return (allMovies)
+  return(
+    <main>
+    {allMovies}
+  </main>
+  )
 
 }
 

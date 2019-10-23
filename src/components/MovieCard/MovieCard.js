@@ -5,14 +5,12 @@ const MovieCard = ({movie}) => {
 
   return (
     <div className='movie'>
-      <div className='card__Image'>
-        <img alt="movie poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />
-      </div>
       <div className='card__header'>
         {movie.title}
       </div>
+      <img className='card_image' alt="movie poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />
       <div className='card__release-date'>
-        Released in: {movie.release_date.slice(0,4)}
+        {movie.release_date.slice(0,4)}
       </div>
     </div>
   )
