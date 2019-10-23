@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 import './Main.css';
 
 
-const Main = ({movies}) => {
+const Main = ({movies, upcomingMovies}) => {
   
   return (
     <main>
       <h1>Hot movies this week</h1>
       <MovieList className = 'current-movies' movies={movies}/>
       <h1>Upcomming Releases</h1>
-      {/* <MovieList className = 'upcoming-movies' movies={upcomingMovies} /> */}
+      <MovieList className = 'upcoming-movies' movies={upcomingMovies} />
     </main>
   )
 }
