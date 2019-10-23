@@ -9,8 +9,8 @@ import Nav from './Nav/Nav';
 import Favorites from './Favorites/Favorites';
 import Main from './Main/Main'
 import MoviePage from './MoviePage/MoviePage';
-import {getMovies} from '../util/apiCalls'
-import {setMovies} from '../actions'
+import {getMovies, getUpcomingMovies} from '../util/apiCalls'
+import {setMovies, setUpcomingMovies } from '../actions'
 import './App.css';
 import { connect } from 'react-redux';
 
@@ -18,13 +18,23 @@ import { connect } from 'react-redux';
 class App extends Component { 
 
   async componentDidMount() {
-    const {setMovies} = this.props;
+    const {setMovies, setUpcomingMovies} = this.props;
     try {
       const data = await getMovies();
       setMovies(data)
     } catch(error) {
       console.log(error)
     }
+
+    try {
+      const data = await getUpcomingMovies();
+      setUpcomingMovies(data)
+    } catch(error) {
+      console.log (error)
+    }
+     
+
+
   }
 
   render = () => {
@@ -41,11 +51,13 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  movies: state.movies
+  movies: state.movies,
+  upcomingMovies: state.upcomingMovies,
 })
 
 const mapDispatchToProps = dispatch => ({
-  setMovies: movies => dispatch(setMovies(movies))
+  setMovies: movies => dispatch(setMovies(movies)),
+  setUpcomingMovies: (upcomingMovies) => dispatch(setUpcomingMovies(upcomingMovies))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps) (App)
