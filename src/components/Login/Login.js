@@ -1,13 +1,21 @@
 import React,{ Component } from 'react';
-import './Login.css'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router-dom'
+import { createNewUser } from '../../util/apiCalls';
+import {setNewUser} from '../../actions';
+import './Login.css';
 
+console.log('newUser',setNewUser)
 class Login extends Component {
   constructor(){
     super()
     this.state={
       name:'',
       email:'',
-      password:''
+      password:'',
+      isLoggedIn:false,
+      logInError: ''
     }
   }
 
@@ -15,8 +23,22 @@ class Login extends Component {
     this.setState( { [e.target.name]:e.target.value } )
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault()
+    const {name, email, password} = this.state;
+    const user = {
+      name,
+      email, 
+      password
+    }
+    try {
+      let newUser = await createNewUser(user)
+      await this.props.setNewUser(newUser)
+      this.setState({isLoggedIn: true})
+    } catch({message}) {
+      this.setState({logInError: message})
+    }
+
     this.setState({
       name:'',
       email:'',
@@ -25,6 +47,9 @@ class Login extends Component {
   }
 
   render = () => {
+    if(this.state.isLoggedIn) {
+      return <Redirect to='/' />
+    }
     return(
       <div className='login screen-cover'>
         <form className='login__form' onSubmit={this.handleSubmit}>
@@ -55,8 +80,9 @@ class Login extends Component {
       </div>
     )
   }
-
-
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => bindActionCreators({setNewUser}, dispatch)
+
+
+export default connect(null, mapDispatchToProps)(Login);
