@@ -1,12 +1,18 @@
 import React from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 import './MovieList.css';
+import { connect } from 'react-redux';
 
-const MovieList = () => {
-  const movies= [<MovieCard/>, <MovieCard/>, <MovieCard />]
+const MovieList = ({movies}) => {
+  let allMovies = movies.map(movie => <MovieCard movie={movie} />)
 
-  return (movies)
+  return (allMovies)
 
 }
 
-export default MovieList;
+const mapStateToProps =  state => ({
+  movies: state.movies
+})
+
+
+export default connect(mapStateToProps)(MovieList);
