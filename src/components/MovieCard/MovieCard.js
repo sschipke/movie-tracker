@@ -1,7 +1,7 @@
 import React from 'react';
 import './MovieCard.css';
 
-const MovieCard = () => {
+const MovieCard = ({movie}) => {
 
   return (
     <div className='movie'>
@@ -9,10 +9,10 @@ const MovieCard = () => {
         Image
       </div>
       <div className='card__header'>
-        Title Here
+        {movie.title}
       </div>
       <div className='card__release-date'>
-        Released in 1976
+        Released in: {movie.release_date.slice(0,4)}
       </div>
     </div>
   )

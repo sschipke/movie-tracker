@@ -26,6 +26,7 @@ class App extends Component {
     const {setMovies} = this.props;
     try {
       const data = await getMovies();
+      console.log(data)
       setMovies(data)
     } catch(error) {
       console.log(error)
