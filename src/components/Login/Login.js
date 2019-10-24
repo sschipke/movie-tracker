@@ -2,11 +2,10 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom'
-import { createNewUser } from '../../util/apiCalls';
-import {setNewUser} from '../../actions';
+import { createNewUser, logInUser } from '../../util/apiCalls';
+import {setUser} from '../../actions';
 import './Login.css';
 
-console.log('newUser',setNewUser)
 class Login extends Component {
   constructor(){
     super()
@@ -15,7 +14,8 @@ class Login extends Component {
       email:'',
       password:'',
       isLoggedIn:false,
-      logInError: ''
+      error: '',
+      logInError: false
     }
   }
 
@@ -25,29 +25,44 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    const {name, email, password} = this.state;
+    e.stopPropagation()    
+    this.createUser()
+    }
+    
+
+
+  createUser = async () => {
+    const { name, email, password } = this.state;
     const user = {
       name,
-      email, 
+      email,
       password
     }
     try {
       let newUser = await createNewUser(user)
-      await this.props.setNewUser(newUser)
-      this.setState({isLoggedIn: true})
-    } catch({message}) {
-      this.setState({logInError: message})
+      await this.props.setUser(newUser)
+      this.setState({ isLoggedIn: true })
+    } catch ({ message }) {
+      this.setState({ error: message })
     }
+  }
 
-    this.setState({
-      name:'',
-      email:'',
-      password:''
-    })
+  logIn = async () => {
+    const { email, password } = this.state;
+    let user = { email, password }
+    try {
+      let currentUser = await logInUser(user);
+      await this.props.setUser(currentUser)
+      this.setState({isLoggedIn: true})
+    } catch ({ message }) {
+      this.setState({ error: message, logInError:true })
+    }
   }
 
   render = () => {
-    if(this.state.isLoggedIn) {
+    const {isLoggedIn, error, logInError} = this.state;
+    let errClass = logInError ? 'error' : ''
+    if(isLoggedIn) {
       return <Redirect to='/' />
     }
     return(
@@ -55,34 +70,47 @@ class Login extends Component {
         <form className='login__form' onSubmit={this.handleSubmit}>
 
           <input 
-            placeholder='User' 
-            name='name' 
+            placeholder='Name' 
+            name='name'
+            maxLength='15'
+            required 
             value={this.state.name}
             onChange={this.handleChange}/>
 
           <input 
           type='email'
-            placeholder='email' 
+            placeholder='Email' 
+            className={errClass}
             name='email' 
+            required
             value={this.state.email}
             onChange={this.handleChange}/>
 
           <input 
             type='password' 
-            placeholder='password' 
-            name='password' 
+            placeholder='Password' 
+            className={errClass}
+            name='password'
+            maxLength='20'
+            required 
             value={this.state.password}
             onChange={this.handleChange}/>
-
-          <button type='submit' className='login__btn'>Login</button>
+          <button type='submit'
+          id='create-new'
+          className='login__btn'
+          >Create an account</button>
+          <button type='button' className='login__btn'
+            id='login'
+            onClick={this.logIn}
+            >Login</button>
+            {error && <h3 className='error__login'>{error}</h3>}
         </form>
-
       </div>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({setNewUser}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({setUser}, dispatch)
 
 
 export default connect(null, mapDispatchToProps)(Login);
