@@ -67,13 +67,15 @@ describe('App REDUX test',() => {
     const mockState = { 
       movies: mockMovies,
       upcomingMovies: mockUpcomingMovies,
-      favotites:[],
+      favorites:[],
       user:{id:1}
       };
 
     const expected = {
       movies: mockState.movies,
-      upcomingMovies: mockState.upcomingMovies
+      upcomingMovies: mockState.upcomingMovies,
+      user: mockState.user,
+      favorites: mockState.favorites
     };
     //Execution
     const mappedProps = mapStateToProps(mockState)

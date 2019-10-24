@@ -6,7 +6,7 @@ import { createNewUser, logInUser , getUserFavorites} from '../../util/apiCalls'
 import {setUser, setFavorites} from '../../actions';
 import './Login.css';
 
-class Login extends Component {
+export class Login extends Component {
   constructor(){
     super()
     this.state={
@@ -25,7 +25,6 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    e.stopPropagation()    
     this.createUser()
     }
     
@@ -112,7 +111,7 @@ class Login extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({setUser, setFavorites}, dispatch)
+export const mapDispatchToProps = dispatch => bindActionCreators({setUser, setFavorites}, dispatch)
 
 
 export default connect(null, mapDispatchToProps)(Login);

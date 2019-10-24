@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should match the initial snapshot 1`] = `
+<div
+  className="login screen-cover"
+>
+  <form
+    className="login__form"
+    onSubmit={[Function]}
+  >
+    <input
+      maxLength="15"
+      name="name"
+      onChange={[Function]}
+      placeholder="Name"
+      required={true}
+      value=""
+    />
+    <input
+      className=""
+      name="email"
+      onChange={[Function]}
+      placeholder="Email"
+      required={true}
+      type="email"
+      value=""
+    />
+    <input
+      className=""
+      maxLength="20"
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      required={true}
+      type="password"
+      value=""
+    />
+    <button
+      className="login__btn"
+      id="create-new"
+      type="submit"
+    >
+      Create an account
+    </button>
+    <button
+      className="login__btn"
+      id="login"
+      onClick={[Function]}
+      type="button"
+    >
+      Login
+    </button>
+  </form>
+</div>
+`;
