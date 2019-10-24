@@ -1,5 +1,5 @@
 export const favorites = (state =[], action) => {
-  switch (action.key) {
+  switch (action.type) {
     case 'SET_FAVORITES':
       return action.favorites
   

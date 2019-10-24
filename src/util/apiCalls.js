@@ -62,5 +62,6 @@ export const logInUser = async user => {
 export const getUserFavorites = async userID => {
   let url = `http://localhost:3001/api/v1/users/${userID}/moviefavorites`
   let res = await fetch(url)
-  return res.json().favorites
+  let parsedRes = await res.json()
+  return parsedRes.favorites
 }
