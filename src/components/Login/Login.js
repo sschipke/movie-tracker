@@ -14,7 +14,8 @@ class Login extends Component {
       email:'',
       password:'',
       isLoggedIn:false,
-      logInError: ''
+      error: '',
+      logInError: false
     }
   }
 
@@ -24,41 +25,43 @@ class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    const {name, email, password} = this.state;
+    e.stopPropagation()    
+    this.createUser()
+    }
+    
+
+
+  createUser = async () => {
+    const { name, email, password } = this.state;
     const user = {
       name,
-      email, 
+      email,
       password
     }
     try {
       let newUser = await createNewUser(user)
       await this.props.setUser(newUser)
-      this.setState({isLoggedIn: true})
-    } catch({message}) {
-      this.setState({logInError: message})
+      this.setState({ isLoggedIn: true })
+    } catch ({ message }) {
+      this.setState({ error: message })
     }
-    this.setState({
-      name:'',
-      email:'',
-      password:''
-    })
   }
 
   logIn = async () => {
     const { email, password } = this.state;
     let user = { email, password }
-    console.log(user)
     try {
       let currentUser = await logInUser(user);
       await this.props.setUser(currentUser)
       this.setState({isLoggedIn: true})
     } catch ({ message }) {
-      this.setState({ logInError: message })
+      this.setState({ error: message, logInError:true })
     }
   }
 
   render = () => {
-    const {isLoggedIn, logInError} = this.state;
+    const {isLoggedIn, error, logInError} = this.state;
+    let errClass = logInError ? 'error' : ''
     if(isLoggedIn) {
       return <Redirect to='/' />
     }
@@ -67,14 +70,16 @@ class Login extends Component {
         <form className='login__form' onSubmit={this.handleSubmit}>
 
           <input 
-            placeholder='User' 
-            name='name' 
+            placeholder='Name' 
+            name='name'
+            required 
             value={this.state.name}
             onChange={this.handleChange}/>
 
           <input 
           type='email'
-            placeholder='email' 
+            placeholder='Email' 
+            className={errClass}
             name='email' 
             required
             value={this.state.email}
@@ -82,19 +87,22 @@ class Login extends Component {
 
           <input 
             type='password' 
-            placeholder='password' 
+            placeholder='Password' 
+            className={errClass}
             name='password'
             required 
             value={this.state.password}
             onChange={this.handleChange}/>
-          {logInError && <h3 className='error__login'>{logInError}</h3>}
-          <button type='submit' className='login__btn'
-            >Create new user</button>
-        </form>
+          <button type='submit'
+          id='create-new'
+          className='login__btn'
+          >Create an account</button>
           <button type='button' className='login__btn'
-          onClick={this.logIn}>Login</button>
-          
-
+            id='login'
+            onClick={this.logIn}
+            >Login</button>
+            {error && <h3 className='error__login'>{error}</h3>}
+        </form>
       </div>
     )
   }
