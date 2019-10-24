@@ -42,10 +42,6 @@ export class App extends Component {
     } catch(error) {
       console.log (error)
     }
-<<<<<<< HEAD
-   
-=======
->>>>>>> master
 
     if(user.name) {
       try {
@@ -90,15 +86,8 @@ export const mapStateToProps = state => ({
   user: state.user
 })
 
-<<<<<<< HEAD
-export const mapDispatchToProps = dispatch => ({
-  setMovies: movies => dispatch(setMovies(movies)),
-  setUpcomingMovies: (upcomingMovies) => dispatch(setUpcomingMovies(upcomingMovies))
-})
-=======
 export const mapDispatchToProps = dispatch => (bindActionCreators({
   setMovies, setUpcomingMovies, setFavorites
 }, dispatch))
->>>>>>> master
 
 export default connect(mapStateToProps, mapDispatchToProps) (App)
