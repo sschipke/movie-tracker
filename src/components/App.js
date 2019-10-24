@@ -16,7 +16,7 @@ import './App.css';
 import { connect } from 'react-redux';
 
 
-class App extends Component { 
+export class App extends Component { 
 
   async componentDidMount() {
     const {setMovies, setUpcomingMovies} = this.props;
@@ -33,7 +33,7 @@ class App extends Component {
     } catch(error) {
       console.log (error)
     }
-     
+   
 
 
   }
@@ -53,12 +53,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   movies: state.movies,
   upcomingMovies: state.upcomingMovies,
 })
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   setMovies: movies => dispatch(setMovies(movies)),
   setUpcomingMovies: (upcomingMovies) => dispatch(setUpcomingMovies(upcomingMovies))
 })
