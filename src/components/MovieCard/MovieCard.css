@@ -2,6 +2,7 @@
   margin: 10px;
   background-color:rgb(30, 30, 30);
   position: relative;
+  height:fit-content;
 }
 
 .card__image {
