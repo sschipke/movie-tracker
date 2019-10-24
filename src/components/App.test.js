@@ -61,7 +61,7 @@ describe('App REDUX test',() => {
     
   })
 
-  it('mapStateToProps give all the todos in state',() => {
+  it('mapStateToProps give all the movies in state',() => {
     //Setup
 
     const mockState = { 
