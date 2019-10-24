@@ -8,7 +8,7 @@ export const setUpcomingMovies = upcomingMovies => ({
   upcomingMovies
 })
 
-export const setNewUser = user => ({
-  type: 'SET_NEW_USER',
+export const setUser = user => ({
+  type: 'SET_USER',
   user
 })

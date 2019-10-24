@@ -29,3 +29,22 @@ export const createNewUser = async user => {
   }
   return res.json();
 }
+
+export const logInUser = async user => {
+  let url = 'http://localhost:3001/api/v1/login';
+  let options = {
+    method: 'POST',
+    body: JSON.stringify(user),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  let res = await fetch(url, options)
+
+  if (!res.ok) {
+    if (res.status === 401) {
+      throw Error('email or password is incorrect')
+    }
+  }
+  return res.json();
+}

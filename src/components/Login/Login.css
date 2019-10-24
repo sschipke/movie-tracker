@@ -6,32 +6,57 @@
 
 }
 
-.login{
-
+.login {
+  display: flex;
+  justify-content: center;
 }
 
+
 .login__form {
+  background: url(../../images/form-background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 input {
-  height: 30px;
+  font-size: 20px;
+  height: 35px;
   line-height: 30px;
   padding:0 8px;
-  width:200px;
+  width:250px;
   border-radius:5px;
   margin:20px 0;
 }
 
 input::placeholder {
-  font-size: 20px;
+  color:white;
+  font-size: 15px;
 }
 
 .login__btn {
+  font-size: 1em;
   height:30px;
-  width:175px;
+  margin-bottom: 20px;
   border-radius: 5px;
+  width: 250px;
+}
+
+.login__btn:hover {
+  cursor: pointer;
+  background: red;
+  color: white;
+}
+
+.error_login {
+  color: red;
+}
+
+.error {
+  border: 2px solid red;
 }
