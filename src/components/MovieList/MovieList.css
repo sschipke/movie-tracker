@@ -1,8 +1,8 @@
 .section__movies {
   display: flex;
-  /* justify-content: space-between; */
+  align-items: center;;
   overflow-x: scroll;
-  height: 450px;
+  height: 480px;
   width: 100%;
   background-color:rgba(255, 255, 255, 0.25)
 }
