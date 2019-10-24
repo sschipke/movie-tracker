@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import {bindActionCreators} from 'redux';
 
 
 //Importing Other Componets
@@ -9,8 +10,8 @@ import Nav from './Nav/Nav';
 import Favorites from './Favorites/Favorites';
 import Main from './Main/Main'
 import MoviePage from './MoviePage/MoviePage';
-import {getMovies, getUpcomingMovies} from '../util/apiCalls'
-import {setMovies, setUpcomingMovies } from '../actions'
+import {getMovies, getUpcomingMovies, getUserFavorites} from '../util/apiCalls';
+import {setMovies, setUpcomingMovies,  setFavorites} from '../actions';
 import MovieList from './MovieList/MovieList'
 import './App.css';
 import { connect } from 'react-redux';
@@ -19,10 +20,18 @@ import { connect } from 'react-redux';
 export class App extends Component { 
 
   async componentDidMount() {
-    const {setMovies, setUpcomingMovies} = this.props;
+    const {setMovies, setUpcomingMovies, setFavorites, user} = this.props;
     try {
       const data = await getMovies();
-      setMovies(data)
+      let cleanData = data.map(movie => ({
+        poster_path: movie.poster_path,
+        title: movie.title,
+        release_date: movie.release_date,
+        vote_average: movie.vote_average,
+        overview: movie.overview,
+        movie_id: movie.id
+      }))
+      setMovies(cleanData)
     } catch(error) {
       console.log(error)
     }
@@ -33,10 +42,31 @@ export class App extends Component {
     } catch(error) {
       console.log (error)
     }
+<<<<<<< HEAD
    
+=======
+>>>>>>> master
 
-
+    if(user.name) {
+      try {
+        let userFavs = await getUserFavorites(user.id)
+        setFavorites(userFavs)
+      } catch(error) {
+        console.log(error)
+      }
+    }
+    
   }
+
+  toggleFavorites =(movie) => {
+    if(this.props.favorites.map(fav => fav.title).includes(movie.title)) {
+      this.removeFavorite()
+    } else {
+      this.addFavorite()
+    }
+  }
+
+
 
   render = () => {
     return (
@@ -44,7 +74,7 @@ export class App extends Component {
         <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
         <Route path='/' render={ () => <Nav /> } />
         <Route exact path='/' render={ () => <Main /> } />
-        <Route exact path='/favorites' render={ () => <Favorites /> } />
+        <Route exact path='/favorites' render={ () => <MovieList movies={this.props.favorites} /> } />
         <Route exact path='/movie/:id' render={ () => <MoviePage /> } />
         <Route exact path='/upcoming' render={ () => <MovieList movies={this.props.upcomingMovies}/> } />
         <Route exact path='/now_playing' render={ () => <MovieList movies={this.props.movies}/> } />
@@ -56,11 +86,19 @@ export class App extends Component {
 export const mapStateToProps = state => ({
   movies: state.movies,
   upcomingMovies: state.upcomingMovies,
+  favorites: state.favorites,
+  user: state.user
 })
 
+<<<<<<< HEAD
 export const mapDispatchToProps = dispatch => ({
   setMovies: movies => dispatch(setMovies(movies)),
   setUpcomingMovies: (upcomingMovies) => dispatch(setUpcomingMovies(upcomingMovies))
 })
+=======
+export const mapDispatchToProps = dispatch => (bindActionCreators({
+  setMovies, setUpcomingMovies, setFavorites
+}, dispatch))
+>>>>>>> master
 
 export default connect(mapStateToProps, mapDispatchToProps) (App)

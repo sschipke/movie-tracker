@@ -2,8 +2,8 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom'
-import { createNewUser, logInUser } from '../../util/apiCalls';
-import {setUser} from '../../actions';
+import { createNewUser, logInUser , getUserFavorites} from '../../util/apiCalls';
+import {setUser, setFavorites} from '../../actions';
 import './Login.css';
 
 class Login extends Component {
@@ -52,6 +52,8 @@ class Login extends Component {
     let user = { email, password }
     try {
       let currentUser = await logInUser(user);
+      let userFavorites = await getUserFavorites(currentUser.id);
+      await this.props.setFavorites(userFavorites)
       await this.props.setUser(currentUser)
       this.setState({isLoggedIn: true})
     } catch ({ message }) {
@@ -110,7 +112,7 @@ class Login extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({setUser}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({setUser, setFavorites}, dispatch)
 
 
 export default connect(null, mapDispatchToProps)(Login);
