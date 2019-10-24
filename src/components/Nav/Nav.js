@@ -14,10 +14,10 @@ const Nav = ({user}) => {
         <NavLink exact to='/' className='NavLink' activeClassName="selectedLink" >  
           Home
         </NavLink>
-        <NavLink exact to='/#top-movies' className='NavLink' activeClassName="selectedLink">  
-          Top Movies
+        <NavLink exact to='/now_playing' className='NavLink' activeClassName="selectedLink">  
+          Now Playing
         </NavLink>
-        <NavLink exact to='/#coming-soon' className='NavLink' activeClassName="selectedLink">  
+        <NavLink exact to='/upcoming' className='NavLink' activeClassName="selectedLink">  
           Coming Soon
         </NavLink>
         <NavLink exact to='/favorites' className='NavLink' activeClassName="selectedLink">  

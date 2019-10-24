@@ -11,6 +11,7 @@ import Main from './Main/Main'
 import MoviePage from './MoviePage/MoviePage';
 import {getMovies, getUpcomingMovies} from '../util/apiCalls'
 import {setMovies, setUpcomingMovies } from '../actions'
+import MovieList from './MovieList/MovieList'
 import './App.css';
 import { connect } from 'react-redux';
 
@@ -45,6 +46,7 @@ class App extends Component {
         <Route exact path='/' render={ () => <Main /> } />
         <Route exact path='/favorites' render={ () => <Favorites /> } />
         <Route exact path='/movie/:id' render={ () => <MoviePage /> } />
+        <Route exact path='/upcoming' render={ () => <MovieList movies={this.props.upcomingMovies}/> } />
       </div> 
     );
   }

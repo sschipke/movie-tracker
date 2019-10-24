@@ -12,3 +12,6 @@
   text-align: center;
 }
 
+.App > section {
+  margin-top:120px;
+}
