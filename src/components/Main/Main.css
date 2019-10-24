@@ -1,0 +1,13 @@
+main {
+ padding-top:80px;
+}
+
+.main__heading-playing,
+.main__heading-upcoming {
+  font-size: 1.5em;
+  margin-bottom:8px;
+}
+
+.main__heading-upcoming {
+  margin-top:15px;
+}

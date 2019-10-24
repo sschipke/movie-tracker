@@ -8,9 +8,9 @@ const Main = ({movies, upcomingMovies}) => {
   
   return (
     <main>
-      <h1>Hot movies this week</h1>
+      <h1 className = 'main__heading-playing'>Playing this week</h1>
       <MovieList className = 'current-movies' movies={movies}/>
-      <h1>Upcomming Releases</h1>
+      <h1 className = 'main__heading-upcoming'>Upcoming Releases</h1>
       <MovieList className = 'upcoming-movies' movies={upcomingMovies} />
     </main>
   )

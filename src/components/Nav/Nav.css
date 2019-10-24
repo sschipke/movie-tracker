@@ -3,25 +3,33 @@ header {
   justify-content: space-between;
   align-items:center;
   height:80px;
+  position: fixed;
+  top: 0;
+  width: 100%
 }
 .header__logo {
   font-size: 35px;
   min-width: 250px;
+  letter-spacing: 1px;
 }
 
 .red {
   color:red;
+  letter-spacing:-3px;
 }
 
 .header__nav {
   width:500px;
   display:flex;
 }
+.header__nav{
+  width:50%;
+}
 
 .NavLink{
   text-decoration: none;
-  width:125px;
-  color:black;
+  width:250px;
+  font-size:20px;
 }
 
 .selectedLink {
