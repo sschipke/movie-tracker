@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import {bindActionCreators} from 'redux';
 
 
 //Importing Other Componets
@@ -9,20 +10,28 @@ import Nav from './Nav/Nav';
 import Favorites from './Favorites/Favorites';
 import Main from './Main/Main'
 import MoviePage from './MoviePage/MoviePage';
-import {getMovies, getUpcomingMovies} from '../util/apiCalls'
-import {setMovies, setUpcomingMovies } from '../actions'
+import {getMovies, getUpcomingMovies, getUserFavorites} from '../util/apiCalls';
+import {setMovies, setUpcomingMovies,  setFavorites} from '../actions';
 import MovieList from './MovieList/MovieList'
 import './App.css';
 import { connect } from 'react-redux';
 
 
-class App extends Component { 
+export class App extends Component { 
 
   async componentDidMount() {
-    const {setMovies, setUpcomingMovies} = this.props;
+    const {setMovies, setUpcomingMovies, setFavorites, user} = this.props;
     try {
       const data = await getMovies();
-      setMovies(data)
+      let cleanData = data.map(movie => ({
+        poster_path: movie.poster_path,
+        title: movie.title,
+        release_date: movie.release_date,
+        vote_average: movie.vote_average,
+        overview: movie.overview,
+        movie_id: movie.id
+      }))
+      setMovies(cleanData)
     } catch(error) {
       console.log(error)
     }
@@ -33,10 +42,27 @@ class App extends Component {
     } catch(error) {
       console.log (error)
     }
-     
 
-
+    if(user.name) {
+      try {
+        let userFavs = await getUserFavorites(user.id)
+        setFavorites(userFavs)
+      } catch(error) {
+        console.log(error)
+      }
+    }
+    
   }
+
+  toggleFavorites =(movie) => {
+    if(this.props.favorites.map(fav => fav.title).includes(movie.title)) {
+      this.removeFavorite()
+    } else {
+      this.addFavorite()
+    }
+  }
+
+
 
   render = () => {
     return (
@@ -53,14 +79,15 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   movies: state.movies,
   upcomingMovies: state.upcomingMovies,
+  favorites: state.favorites,
+  user: state.user
 })
 
-const mapDispatchToProps = dispatch => ({
-  setMovies: movies => dispatch(setMovies(movies)),
-  setUpcomingMovies: (upcomingMovies) => dispatch(setUpcomingMovies(upcomingMovies))
-})
+export const mapDispatchToProps = dispatch => (bindActionCreators({
+  setMovies, setUpcomingMovies, setFavorites
+}, dispatch))
 
 export default connect(mapStateToProps, mapDispatchToProps) (App)
