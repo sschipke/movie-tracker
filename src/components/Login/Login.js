@@ -2,11 +2,10 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom'
-import { createNewUser } from '../../util/apiCalls';
-import {setNewUser} from '../../actions';
+import { createNewUser, logInUser } from '../../util/apiCalls';
+import {setUser} from '../../actions';
 import './Login.css';
 
-console.log('newUser',setNewUser)
 class Login extends Component {
   constructor(){
     super()
@@ -33,12 +32,11 @@ class Login extends Component {
     }
     try {
       let newUser = await createNewUser(user)
-      await this.props.setNewUser(newUser)
+      await this.props.setUser(newUser)
       this.setState({isLoggedIn: true})
     } catch({message}) {
       this.setState({logInError: message})
     }
-
     this.setState({
       name:'',
       email:'',
@@ -46,8 +44,22 @@ class Login extends Component {
     })
   }
 
+  logIn = async () => {
+    const { email, password } = this.state;
+    let user = { email, password }
+    console.log(user)
+    try {
+      let currentUser = await logInUser(user);
+      await this.props.setUser(currentUser)
+      this.setState({isLoggedIn: true})
+    } catch ({ message }) {
+      this.setState({ logInError: message })
+    }
+  }
+
   render = () => {
-    if(this.state.isLoggedIn) {
+    const {isLoggedIn, logInError} = this.state;
+    if(isLoggedIn) {
       return <Redirect to='/' />
     }
     return(
@@ -64,25 +76,31 @@ class Login extends Component {
           type='email'
             placeholder='email' 
             name='email' 
+            required
             value={this.state.email}
             onChange={this.handleChange}/>
 
           <input 
             type='password' 
             placeholder='password' 
-            name='password' 
+            name='password'
+            required 
             value={this.state.password}
             onChange={this.handleChange}/>
-
-          <button type='submit' className='login__btn'>Login</button>
+          {logInError && <h3 className='error__login'>{logInError}</h3>}
+          <button type='submit' className='login__btn'
+            >Create new user</button>
         </form>
+          <button type='button' className='login__btn'
+          onClick={this.logIn}>Login</button>
+          
 
       </div>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({setNewUser}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({setUser}, dispatch)
 
 
 export default connect(null, mapDispatchToProps)(Login);
