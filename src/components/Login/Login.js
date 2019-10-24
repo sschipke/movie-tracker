@@ -72,6 +72,7 @@ class Login extends Component {
           <input 
             placeholder='Name' 
             name='name'
+            maxLength='15'
             required 
             value={this.state.name}
             onChange={this.handleChange}/>
