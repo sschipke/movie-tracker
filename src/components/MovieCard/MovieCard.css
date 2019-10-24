@@ -1,12 +1,41 @@
 .movie {
   margin: 10px;
+  background-color:rgb(30, 30, 30);
 }
 
-.movie h2 {
+.card__header {
+  background-color:rgb(30, 30, 30);
   height: 60px;
+  font-size: 1.2em;
+  text-align:center;
+  padding: 5px;
+  vertical-align: middle;
+  
+}
+.card__release-date {
+  background-color:rgb(30, 30, 30);
 }
 .card_image {
   height: 350px;
   min-height: 300px;
   max-width: 250px;
+  background-color:rgb(30, 30, 30);
+}
+
+.movie:hover,
+.movie:hover .card__release-date,
+.movie:hover .card_image,
+.movie:hover .card__header{
+  background-color:rgb(0, 0, 0);
+}
+.movie:hover {
+  animation-name: movie-micro;
+  animation-duration:0.5s;
+  animation-fill-mode: forwards;
+  box-shadow: 0px 0px 8px white;
+}
+
+@keyframes movie-micro {
+  0% { transform: scale(1)}
+  100%{transform: scale(1.03)}
 }
