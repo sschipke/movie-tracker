@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieCard should match the snapshot with all the data passed in correctly 1`] = `
+<div
+  className="movie"
+>
+  <img
+    alt="star indicating is a movie is favorited or not"
+    className="card__image-favorite"
+    src="bluestar.svg"
+  />
+  <img
+    alt="movie poster"
+    className="card__image"
+    src="https://image.tmdb.org/t/p/original//vqzNJRH4YyquRiWxCCOH0aXggHI.jpg"
+  />
+  <div
+    className="card__header"
+  >
+    <p>
+      Terminator: Dark Fate
+    </p>
+  </div>
+  <h4
+    className="card__release-date"
+  >
+    2019
+  </h4>
+</div>
+`;
