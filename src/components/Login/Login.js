@@ -91,6 +91,7 @@ class Login extends Component {
             placeholder='Password' 
             className={errClass}
             name='password'
+            maxLength='20'
             required 
             value={this.state.password}
             onChange={this.handleChange}/>
