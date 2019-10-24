@@ -1,31 +1,51 @@
 .movie {
   margin: 10px;
   background-color:rgb(30, 30, 30);
+  position: relative;
 }
 
-.card__header {
-  background-color:rgb(30, 30, 30);
-  height: 60px;
-  font-size: 1.2em;
-  text-align:center;
-  padding: 5px;
-  vertical-align: middle;
-  
-}
-.card__release-date {
-  background-color:rgb(30, 30, 30);
-}
-.card_image {
+.card__image {
   height: 350px;
   min-height: 300px;
   max-width: 250px;
   background-color:rgb(30, 30, 30);
+  position: relative;
+}
+
+.card__image-favorite {
+  height:30px;
+  background-color:rgba(255,255,255,0);
+  position:absolute;
+  z-index:1;
+  right:4%;
+  top:1%;
+}
+
+.card__header {
+  background-color:rgb(30, 30, 30);
+  height: 50px;
+  font-size: 1.2em;
+  text-align:center;
+  padding: 5px;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card__header p {
+  background-color:rgb(30, 30, 30);
+}
+
+.card__release-date {
+  background-color:rgb(30, 30, 30);
+  margin-bottom:10px;
 }
 
 .movie:hover,
 .movie:hover .card__release-date,
 .movie:hover .card_image,
-.movie:hover .card__header{
+.movie:hover .card__header,
+.movie:hover .card__header p{
   background-color:rgb(0, 0, 0);
 }
 .movie:hover {
