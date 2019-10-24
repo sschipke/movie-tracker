@@ -70,7 +70,7 @@ export class App extends Component {
         <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
         <Route path='/' render={ () => <Nav /> } />
         <Route exact path='/' render={ () => <Main /> } />
-        <Route exact path='/favorites' render={ () => <Favorites /> } />
+        <Route exact path='/favorites' render={ () => <MovieList movies={this.props.favorites} /> } />
         <Route exact path='/movie/:id' render={ () => <MoviePage /> } />
         <Route exact path='/upcoming' render={ () => <MovieList movies={this.props.upcomingMovies}/> } />
         <Route exact path='/now_playing' render={ () => <MovieList movies={this.props.movies}/> } />
