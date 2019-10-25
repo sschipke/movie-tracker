@@ -19,8 +19,6 @@ export const getUpcomingMovies = async () => {
   return cleanMovieData(data.results)
 }
 
-
-
 export const createNewUser = async user => {
   let url = 'http://localhost:3001/api/v1/users'
   let options = {
@@ -60,8 +58,39 @@ export const logInUser = async user => {
 }
 
 export const getUserFavorites = async userID => {
-  let url = `http://localhost:3001/api/v1/users/${userID}/moviefavorites`
-  let res = await fetch(url)
-  let parsedRes = await res.json()
-  return parsedRes.favorites
+  let url = `http://localhost:3001/api/v1/users/${userID}/moviefavorites`;
+  let res = await fetch(url);
+  let parsedRes = await res.json();
+  return parsedRes.favorites;
+}
+
+export const postFavorite = async (userId, movie) => {
+  let url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  let options = {
+    method: 'POST',
+    body: JSON.stringify(movie),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  let res = await fetch(url, options);
+  if (!res.ok) {
+    throw Error('Could not add favorite movie.')
+  }
+}
+
+
+export const deleteFavorite = async (userId, movie_id) => {
+  let url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movie_id}`
+  let options = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }
+  let res = await fetch(url, options);
+  if (!res.ok) {
+      throw Error('Could not delete favorite.')
+  }
+
 }
