@@ -44,25 +44,33 @@ header {
 
 .user-avatar{
   height:25px;
+  margin-right:9px;
+  background-color: rgba(255,255,255,0);
 }
 
 .header__user-menu{
   margin-top:10px;
-  width:250px;  
+  width:250px;
+  margin-right:15px
 }
+
 .inner {
-  background: black;
+  display:flex;
+  justify-content: flex-end;
+ 
+  background: red;
   color:white;
   padding: 1em;
   border-radius: 10px;
   width: 250px;
-  clip-path: circle(10% at 90% 20%);
+  clip-path: circle(10% at 85% 50%);
   transition: all .5s ease-in-out;
   cursor: pointer;
 }
+
 .inner:hover {
   clip-path: circle(75%);
-  background: #00B6FF;
+  background: black;
 }
 
 .inner h1 {
@@ -75,19 +83,16 @@ header {
   font-size: .8rem;
 }
 
-.inner span {
-  float: right;
-  color: white;
-  font-weight: bold;
-  transition: color .5s;
-  position: relative;
-  margin-right: 4%;
-  }
 
 .inner:hover span {
   color: rgba(255,255,255,0)
 }
 
+.header__user-name{
+  background-color:transparent;
+  margin-right:30px;
+
+}
 
 
 @keyframes btn-micro {
