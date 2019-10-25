@@ -23,15 +23,7 @@ export class App extends Component {
     const {setMovies, setUpcomingMovies, setFavorites, user} = this.props;
     try {
       const data = await getMovies();
-      let cleanData = data.map(movie => ({
-        poster_path: movie.poster_path,
-        title: movie.title,
-        release_date: movie.release_date,
-        vote_average: movie.vote_average,
-        overview: movie.overview,
-        movie_id: movie.id
-      }))
-      setMovies(cleanData)
+      setMovies(data)
     } catch(error) {
       console.log(error)
     }
@@ -71,7 +63,11 @@ export class App extends Component {
         <Route path='/' render={ () => <Nav /> } />
         <Route exact path='/' render={ () => <Main /> } />
         <Route exact path='/favorites' render={ () => <MovieList movies={this.props.favorites} /> } />
-        <Route exact path='/movie/:id' render={ () => <MoviePage /> } />
+        <Route exact path='/movie/:movie_id' render={ ({match}) => {
+          console.log(match)
+          let currentMovie = this.props.movies.find(movie => movie.movie_id === parseInt(match.params.movie_id))
+          return (<MoviePage {...currentMovie}/>)
+        }}/>
         <Route exact path='/upcoming' render={ () => <MovieList movies={this.props.upcomingMovies}/> } />
         <Route exact path='/now_playing' render={ () => <MovieList movies={this.props.movies}/> } />
       </div> 
