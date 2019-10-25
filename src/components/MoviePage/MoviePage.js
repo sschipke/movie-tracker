@@ -1,13 +1,17 @@
 import React from 'react';
+import './MoviePage.css'
 
-const MoviePage = () => {
+const MoviePage = (movie) => {
+  console.log(movie)
   return(
     <div className='movie-page'>
-      <div className='movie-page__poster'>Poster</div>
-      <div className='movie-page__rating'>4.7 out of 5</div>
-      <div className='movie-page__title'>Titel</div>
-      <div className='movie-page__release'>Released in 1985</div>
-      <div className='movie-page__plot'>Thing happened in this movie.  Maybe this app will tell you about them</div>
+      <img className='movie__image' alt="movie poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />
+      <div className='movie__info'>
+        <div className='movie-page__title'>{movie.title}</div>
+        <div className='movie-page__rating'>Rated: {movie.vote_average} out of 10</div>
+        <div className='movie-page__plot'>{movie.overview}</div>
+        <div className='movie-page__release'>Released on {movie.release_date}</div>
+      </div>
     </div>
   )
 
