@@ -4,7 +4,7 @@ import './MovieList.css';
 
 
 const MovieList = ({movies}) => {
-  let allMovies = movies.map(movie => <MovieCard movie={movie} key={movie.id}/>)
+  let allMovies = movies.map(movie => <MovieCard movie={movie} key={Math.random()}/>)
 
   return(
     <section className='section__movies'>
