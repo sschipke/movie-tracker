@@ -1,0 +1,29 @@
+.movie-page {
+  padding-top:80px;
+  display: flex;
+}
+
+.movie__image {
+  height:calc(100vh - 80px);
+}
+
+.movie__info {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 50px;
+  width:50%;
+}
+
+.movie-page__title{
+  font-size: 3em;
+}
+.movie-page__rating,
+.movie-page__release {
+  margin:15px 0;
+}
+.movie-page__plot {
+  text-align: left;
+  margin: 10px 0px;
+  font-size:1.2em;
+}
