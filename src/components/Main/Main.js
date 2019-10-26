@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import './Main.css';
 
 const Main = ({movies, upcomingMovies, toggleFavorites}) => {
-  console.log('main', toggleFavorites)
-  
   return (
     <main>
       <h1 className = 'main__heading-playing'>Playing this week</h1>

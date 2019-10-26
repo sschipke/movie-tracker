@@ -2,7 +2,6 @@ import React from 'react';
 import './MoviePage.css'
 
 const MoviePage = (movie) => {
-  console.log(movie)
   return(
     <div className='movie-page'>
       <img className='movie__image' alt="movie poster" src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} />

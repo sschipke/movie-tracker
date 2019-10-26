@@ -4,7 +4,6 @@ import './MovieList.css';
 
 
 const MovieList = ({movies, toggleFavorites}) => {
-  console.log('movieCard toggle', toggleFavorites)
   let allMovies = movies.map(movie => 
   <MovieCard 
     toggleFavorites={toggleFavorites} 

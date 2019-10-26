@@ -5,7 +5,6 @@ import star from '../../images/bluestar.svg';
 import favstar from '../../images/fav-star.svg'
 
 const MovieCard = ({movie, toggleFavorites}) => {
-  console.log('movieCard toggle', toggleFavorites)
   const id = movie.movie_id;
   return (
     <Link to={`/movie/${id}`}>

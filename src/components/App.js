@@ -86,7 +86,6 @@ export class App extends Component {
         <Route exact path='/' render={() => <Main toggleFavorites={this.toggleFavorites} /> } />
         <Route exact path='/favorites' render={ () => <MovieList toggleFavorites={this.toggleFavorites}movies={this.props.favorites} /> } />
         <Route exact path='/movie/:movie_id' render={ ({match}) => {
-          console.log(match)
           let allMovies = [...this.props.movies, ...this.props.upcomingMovies, ...this.props.favorites];
           let currentMovie = allMovies.find(movie => movie.movie_id === parseInt(match.params.movie_id))
           return (<MoviePage {...currentMovie}/>)
