@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;;
   overflow-x: scroll;
-  height: 480px;
+  height: 460px;
   width: 100%;
-  background-color:rgba(255, 255, 255, 0.25)
+  /* background-color:rgba(255, 255, 255, 0.25) */
 }
