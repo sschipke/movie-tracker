@@ -10,7 +10,7 @@ import Nav from './Nav/Nav';
 import Favorites from './Favorites/Favorites';
 import Main from './Main/Main'
 import MoviePage from './MoviePage/MoviePage';
-import {getMovies, getUpcomingMovies, getUserFavorites} from '../util/apiCalls';
+import {getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite} from '../util/apiCalls';
 import {setMovies, setUpcomingMovies,  setFavorites} from '../actions';
 import MovieList from './MovieList/MovieList'
 import './App.css';
@@ -46,11 +46,33 @@ export class App extends Component {
     
   }
 
-  toggleFavorites =(movie) => {
+  toggleFavorites = (e, movie) => {
+    e.preventDefault();
+    let userID = this.props.user.id;
     if(this.props.favorites.map(fav => fav.title).includes(movie.title)) {
-      this.removeFavorite()
+      this.removeFavorite(userID, movie.movie_id)
     } else {
-      this.addFavorite()
+      this.addFavorite(userID, movie)
+    }
+  }
+
+  removeFavorite = async (userID,movieID) => {
+    try {
+      await deleteFavorite(userID, movieID);
+      let updatedFavorites = await getUserFavorites(userID)
+      this.props.setFavorites(updatedFavorites)
+    } catch({message}) {
+      console.log(message)
+    }
+  }
+
+  addFavorite = async (userID, movie) => {
+    try {
+      await postFavorite(userID, movie);
+      let currentFavorites = await getUserFavorites(userID);
+      this.props.setFavorites(currentFavorites)
+    } catch({message}) {
+      console.log(message)
     }
   }
 
@@ -61,16 +83,15 @@ export class App extends Component {
       <div className="App">
         <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
         <Route path='/' render={ () => <Nav /> } />
-        <Route exact path='/' render={ () => <Main /> } />
-        <Route exact path='/favorites' render={ () => <MovieList movies={this.props.favorites} /> } />
+        <Route exact path='/' render={() => <Main toggleFavorites={this.toggleFavorites} /> } />
+        <Route exact path='/favorites' render={ () => <MovieList toggleFavorites={this.toggleFavorites}movies={this.props.favorites} /> } />
         <Route exact path='/movie/:movie_id' render={ ({match}) => {
-          console.log(match)
           let allMovies = [...this.props.movies, ...this.props.upcomingMovies, ...this.props.favorites];
           let currentMovie = allMovies.find(movie => movie.movie_id === parseInt(match.params.movie_id))
           return (<MoviePage {...currentMovie}/>)
         }}/>
-        <Route exact path='/upcoming' render={ () => <MovieList movies={this.props.upcomingMovies}/> } />
-        <Route exact path='/now_playing' render={ () => <MovieList movies={this.props.movies}/> } />
+        <Route exact path='/upcoming' render={() => <MovieList toggleFavorites={this.toggleFavorites} movies={this.props.upcomingMovies}/> } />
+        <Route exact path='/now_playing' render={() => <MovieList toggleFavorites={this.toggleFavorites}movies={this.props.movies}/> } />
       </div> 
     );
   }
