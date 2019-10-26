@@ -62,7 +62,7 @@ export class App extends Component {
         <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
         <Route path='/' render={ () => <Nav /> } />
         <Route exact path='/' render={ () => <Main /> } />
-        <Route exact path='/favorites' render={ () => <MovieList movies={this.props.favorites} /> } />
+        <Route exact path='/favorites' render={ () => <Favorites movies={this.props.favorites} /> } />
         <Route exact path='/movie/:movie_id' render={ ({match}) => {
           console.log(match)
           let allMovies = [...this.props.movies, ...this.props.upcomingMovies, ...this.props.favorites];

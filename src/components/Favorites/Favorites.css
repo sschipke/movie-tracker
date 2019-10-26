@@ -1,0 +1,12 @@
+.favorites {
+  padding:100px;
+}
+
+.favorites .movie {
+  width:230px;
+  display:inline-block;
+}
+
+.favorite__message {
+  color:red;
+}
