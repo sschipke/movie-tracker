@@ -1,16 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './MovieCard.css';
 import star from '../../images/bluestar.svg';
-import favstar from '../../images/fav-star.svg'
+import favstar from '../../images/fav-star.svg';
 
-const MovieCard = ({movie, toggleFavorites}) => {
+export const MovieCard = ({movie, toggleFavorites, favorites}) => {
+  let isFavorite = favorites.map(movie => movie.title).includes(movie.title);
+  let faveImg = isFavorite ? favstar : star;
+  let faveClass = isFavorite ? 'favorite' : '';
   const id = movie.movie_id;
   return (
     <Link to={`/movie/${id}`}>
-      <div className='movie' movie_id={movie.movie_id}>
+      <div className={`movie ${faveClass}`}  movie_id={movie.movie_id}>
         <img alt='star indicating is a movie is favorited or not' 
-        src={star} 
+        src={faveImg} 
         className='card__image-favorite' 
           onClick={ (e) => {
             toggleFavorites(e, movie)
@@ -34,4 +38,8 @@ const MovieCard = ({movie, toggleFavorites}) => {
   )
 }
 
-export default MovieCard;
+export const mapStateToProps = state => ({
+  favorites: state.favorites
+})
+
+export default connect(mapStateToProps)(MovieCard)
