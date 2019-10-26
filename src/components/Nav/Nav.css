@@ -7,11 +7,20 @@ header {
   top: 0;
   width: 100%;
   z-index:2;
+  border-bottom:1px solid gray
 }
+
+.logo {
+  height:45px;
+  margin:0 10px ;
+}
+
 .header__logo {
   font-size: 35px;
   min-width: 250px;
   letter-spacing: 1px;
+  display:flex;
+
 }
 
 .red {
@@ -20,17 +29,15 @@ header {
 }
 
 .header__nav {
-  width:500px;
+  width:80%;
   display:flex;
-}
-.header__nav{
-  width:50%;
 }
 
 .NavLink{
   text-decoration: none;
   width:250px;
   font-size:20px;
+  line-height: 45px;
 }
 
 .selectedLink {

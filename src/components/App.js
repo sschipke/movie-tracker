@@ -84,7 +84,7 @@ export class App extends Component {
         <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
         <Route path='/' render={ () => <Nav /> } />
         <Route exact path='/' render={() => <Main toggleFavorites={this.toggleFavorites} /> } />
-        <Route exact path='/favorites' render={ () => <MovieList toggleFavorites={this.toggleFavorites}movies={this.props.favorites} /> } />
+        <Route exact path='/favorites' render={ () => <Favorites toggleFavorites={this.toggleFavorites} movies={this.props.favorites} /> } />
         <Route exact path='/movie/:movie_id' render={ ({match}) => {
           let allMovies = [...this.props.movies, ...this.props.upcomingMovies, ...this.props.favorites];
           let currentMovie = allMovies.find(movie => movie.movie_id === parseInt(match.params.movie_id))
