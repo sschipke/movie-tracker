@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './MovieCard.css';
-import star from '../../images/bluestar.svg';
+import star from '../../images/star.svg';
 import favstar from '../../images/fav-star.svg';
 
 export const MovieCard = ({movie, toggleFavorites, favorites}) => {

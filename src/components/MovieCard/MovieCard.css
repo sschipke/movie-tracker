@@ -15,7 +15,7 @@
 
 .card__image-favorite {
   height:30px;
-  background-color:rgba(255,255,255,0);
+  background-color:rgba(255,255,255, 0.1);
   position:absolute;
   z-index:1;
   right:4%;
@@ -59,4 +59,16 @@
 @keyframes movie-micro {
   0% { transform: scale(1)}
   100%{transform: scale(1.03)}
+}
+
+.favorite {
+  box-shadow: 0px 0px 15px gold;  
+}
+
+.favorite:hover {
+  box-shadow: 0px 0px 20px gold;
+}
+
+.favorite .card__image-favorite {
+  background-color:rgba(255,255,255, 0);
 }
