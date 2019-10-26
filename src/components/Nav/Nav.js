@@ -4,12 +4,16 @@ import { connect } from 'react-redux';
 import './Nav.css';
 import PropTypes from 'prop-types';
 import avatar from '../../images/user-avatar.svg'
+import logo from '../../images/MovieSnagLogo.png'
+
 const Nav = ({user}) => {
 
   return (
     <header>
-      <h1 className='header__logo'>Movie<span className='red'>Snag</span></h1>
       <div className='header__nav'>
+      <h1 className='header__logo'>
+      <img alt='MovieSnag logo' src={logo} className='logo'/>
+        Movie<span className='red'>Snag</span></h1>
         <NavLink exact to='/' className='NavLink' activeClassName="selectedLink" >  
           Home
         </NavLink>
