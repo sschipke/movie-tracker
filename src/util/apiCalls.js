@@ -65,6 +65,7 @@ export const getUserFavorites = async userID => {
 }
 
 export const postFavorite = async (userId, movie) => {
+  console.log('post', userId, movie)
   let url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
   let options = {
     method: 'POST',
@@ -81,6 +82,7 @@ export const postFavorite = async (userId, movie) => {
 
 
 export const deleteFavorite = async (userId, movie_id) => {
+  console.log('delete', userId, movie_id)
   let url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movie_id}`
   let options = {
     method: 'DELETE',
