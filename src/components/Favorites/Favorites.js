@@ -5,7 +5,7 @@ import './Favorites.css';
 import { connect } from 'react-redux'
 
 
-const Favorites = ({movies, user}) => {
+const Favorites = ({movies, user, toggleFavorites}) => {
 
   if(!user.name){
     return (
@@ -16,7 +16,7 @@ const Favorites = ({movies, user}) => {
   }
 
   if(movies.length > 0 && user.name) {
-    const favoriteList = movies.map(movie => (<MovieCard movie={movie}/>))
+    const favoriteList = movies.map(movie => (<MovieCard movie={movie} toggleFavorites={toggleFavorites}/>))
     return (
       <div className='favorites'>
         {favoriteList}
