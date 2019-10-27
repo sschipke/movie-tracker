@@ -43,6 +43,16 @@ describe('Login', () => {
       expect(wrapper.state('name')).toEqual('Steve');
       expect(wrapper.state('email')).toEqual('steve@g.com')
     })
+    it('should run handleChange when the inputs detect a change', () => {
+      const mockNameEvent = { target: { name: 'name', value: 'Robbie' } };
+      const mockEmailEvent = { target: { name: 'email', value: 's@g.com' } };
+      wrapper.instance().handleChange = jest.fn();
+      wrapper.instance().forceUpdate();
+      wrapper.find('[name="name"]').simulate('change', mockNameEvent);
+      wrapper.find('[name="email"]').simulate('change', mockEmailEvent);
+      expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockNameEvent);
+      expect(wrapper.instance().handleChange).toHaveBeenCalledWith(mockEmailEvent);
+    }) 
   })
   describe('handleSubmit', () => {
     let wrapper;
@@ -54,6 +64,9 @@ describe('Login', () => {
       wrapper.find('form').simulate('submit', mockEvent);
       expect(mockEvent.preventDefault).toHaveBeenCalled()
     })
+  })
+  describe('createUser', () => {
+    
   })
   describe('redux actions', () => {
     let mockUser = {
