@@ -25,7 +25,7 @@ exports[`App should match the snapshot 1`] = `
   />
   <Route
     exact={true}
-    path="/movie/:id"
+    path="/movie/:movie_id"
     render={[Function]}
   />
   <Route
