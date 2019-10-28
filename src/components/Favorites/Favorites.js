@@ -16,7 +16,7 @@ const Favorites = ({movies, user, toggleFavorites}) => {
   }
 
   if(movies.length > 0 && user.name) {
-    const favoriteList = movies.map(movie => (<MovieCard movie={movie} toggleFavorites={toggleFavorites}/>))
+    const favoriteList = movies.map(movie => (<MovieCard key={Math.random()} movie={movie} toggleFavorites={toggleFavorites}/>))
     return (
       <div className='favorites'>
         {favoriteList}

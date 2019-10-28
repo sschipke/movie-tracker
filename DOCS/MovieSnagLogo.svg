@@ -18,9 +18,10 @@
   <defs
      id="defs2" />
   <sodipodi:namedview
+     showguides="true"
      inkscape:window-maximized="0"
      inkscape:window-y="23"
-     inkscape:window-x="0"
+     inkscape:window-x="1366"
      inkscape:window-height="814"
      inkscape:window-width="1440"
      showgrid="true"
@@ -28,7 +29,7 @@
      inkscape:current-layer="layer2"
      inkscape:document-units="mm"
      inkscape:cy="576.30346"
-     inkscape:cx="289.70626"
+     inkscape:cx="232.63726"
      inkscape:zoom="1.1039267"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
@@ -57,17 +58,20 @@
      id="layer2"
      inkscape:groupmode="layer">
     <path
-       d="M 141.55225,141.81671 A 54.239746,50.221989 0 0 1 87.392489,192.03865 54.239746,50.221989 0 0 1 33.07299,141.96484 54.239746,50.221989 0 0 1 87.072534,91.595214 54.239746,50.221989 0 0 1 141.5513,141.52046 l -54.2388,0.29625 z"
+       inkscape:export-filename="/Users/kirkveitch/turing/mod3/proj/movie-tracker/public/logo512.png"
+       inkscape:export-ydpi="119.31009"
+       inkscape:export-xdpi="119.31009"
+       d="M 142.34167,140.22917 A 54.5,54.5 0 0 1 87.92204,194.72911 54.5,54.5 0 0 1 33.341904,140.38992 54.5,54.5 0 0 1 87.60055,85.729705 54.5,54.5 0 0 1 142.34072,139.90768 l -54.499053,0.32149 z"
        sodipodi:arc-type="slice"
        sodipodi:end="6.2772864"
        sodipodi:start="0"
-       sodipodi:ry="50.221989"
-       sodipodi:rx="54.239746"
-       sodipodi:cy="141.81671"
-       sodipodi:cx="87.3125"
+       sodipodi:ry="54.5"
+       sodipodi:rx="54.5"
+       sodipodi:cy="140.22917"
+       sodipodi:cx="87.841667"
        sodipodi:type="arc"
        id="path59"
-       style="fill:#000000;stroke:#000000;stroke-width:0.401775" />
+       style="fill:#000000;stroke:#000000;stroke-width:0.41954" />
   </g>
   <g
      sodipodi:insensitive="true"

@@ -13,7 +13,7 @@ const Nav = ({user}) => {
       <div className='header__nav'>
       <h1 className='header__logo'>
       <img alt='MovieSnag logo' src={logo} className='logo'/>
-        Movie<span className='red'>Snag</span></h1>
+        ovie<span className='red'>Snag</span></h1>
         <NavLink exact to='/' className='NavLink' activeClassName="selectedLink" >  
           Home
         </NavLink>
