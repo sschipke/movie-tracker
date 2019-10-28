@@ -15,7 +15,7 @@
 
 .card__image-favorite {
   height:30px;
-  background-color:rgba(255,255,255, 0.1);
+  background-color:rgba(255,255,255, 0);
   position:absolute;
   z-index:1;
   right:4%;
