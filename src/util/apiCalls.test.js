@@ -232,6 +232,44 @@ describe('getUserFavorites', () => {
     })
     expect(getUserFavorites(4)).rejects.toEqual(Error('Unable to get favorites'));
   })
+});
+
+describe('postFavorite', () => {
+  let mockMovie = {
+    "movie_id": 14643,
+    "poster_path": "/pIcV8XXIIvJCbtPoxF9qHMKdRr2.jpg",
+    "id": 338967,
+    "title": "Zombieland: Double Tap",
+    "vote_average": 7.3,
+    "overview": "The group will face a new zombie threat as a new breed of zombie has developed. This new super-zombie type is faster, bigger, and stronger than the previous strain of zombies and harder to kill. These super-zombies have started grouping up into a horde going from city to city leaving a path of destruction behind them.",
+    "release_date": "2019-10-18"
+  }
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true
+      })
+    })
+  });
+  it('should be called with the correct arguments', () => {
+    const expected = ['http://localhost:3001/api/v1/users/5/moviefavorites', {
+      method: 'POST',
+      body: JSON.stringify(mockMovie),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }]
+    postFavorite(5, mockMovie);
+    expect(window.fetch).toHaveBeenCalledWith(...expected)
+  });
+  it('should throw an error if something goes wrong (SAD)', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      })
+    })
+    expect(postFavorite(5, mockMovie)).rejects.toEqual(Error('Could not add favorite movie.'));
+  });
 })
 
 
