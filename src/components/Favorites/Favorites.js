@@ -5,7 +5,7 @@ import './Favorites.css';
 import { connect } from 'react-redux'
 
 
-const Favorites = ({movies, user, toggleFavorites}) => {
+export const Favorites = ({movies, user, toggleFavorites}) => {
 
   if(!user.name){
     return (
