@@ -5,21 +5,26 @@ exports[`Nav should match the snapshot 1`] = `
   <div
     className="header__nav"
   >
-    <h1
-      className="header__logo"
+    <Link
+      className=""
+      to="./"
     >
-      <img
-        alt="MovieSnag logo"
-        className="logo"
-        src="MovieSnagLogo.png"
-      />
-      ovie
-      <span
-        className="red"
+      <h1
+        className="header__logo"
       >
-        Snag
-      </span>
-    </h1>
+        <img
+          alt="MovieSnag logo"
+          className="logo"
+          src="MovieSnagLogo.png"
+        />
+        ovie
+        <span
+          className="red"
+        >
+          Snag
+        </span>
+      </h1>
+    </Link>
     <NavLink
       activeClassName="selectedLink"
       className="NavLink"
@@ -84,21 +89,26 @@ exports[`Nav should render a logout button if a user is passed in 1`] = `
   <div
     className="header__nav"
   >
-    <h1
-      className="header__logo"
+    <Link
+      className=""
+      to="./"
     >
-      <img
-        alt="MovieSnag logo"
-        className="logo"
-        src="MovieSnagLogo.png"
-      />
-      ovie
-      <span
-        className="red"
+      <h1
+        className="header__logo"
       >
-        Snag
-      </span>
-    </h1>
+        <img
+          alt="MovieSnag logo"
+          className="logo"
+          src="MovieSnagLogo.png"
+        />
+        ovie
+        <span
+          className="red"
+        >
+          Snag
+        </span>
+      </h1>
+    </Link>
     <NavLink
       activeClassName="selectedLink"
       className="NavLink"
