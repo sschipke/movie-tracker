@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MovieCard from '../MovieCard/MovieCard';
 import { Link } from 'react-router-dom'
 import './Favorites.css';
@@ -50,4 +51,10 @@ export const mapStateToProps = state => ({
   user: state.user
 })
 
-export default connect(mapStateToProps, null) (Favorites)
+export default connect(mapStateToProps, null) (Favorites);
+
+Favorites.propTypes = {
+  movies: PropTypes.array,
+  user: PropTypes.object,
+  toggleFavorites: PropTypes.func.isRequired
+}
