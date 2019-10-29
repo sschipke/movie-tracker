@@ -1,5 +1,6 @@
 import React from 'react';
-import './MoviePage.css'
+import PropTypes from 'prop-types';
+import './MoviePage.css';
 
 const MoviePage = (movie) => {
   return(
@@ -17,3 +18,7 @@ const MoviePage = (movie) => {
 }
 
 export default MoviePage;
+
+MoviePage.propTypes = {
+  movie: PropTypes.object.isRequired,
+}
