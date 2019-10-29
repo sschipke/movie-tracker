@@ -86,3 +86,56 @@ describe('getUpcomingMovies', () => {
   })
 });
 
+describe('createNewUser', () => {
+  let mockUserRes = {
+    id: 34,
+    name: 'Sam',
+    email: 's@g.com',
+    password: 'password'
+  }
+  let mockUser = {
+    name: 'Sam',
+    email: 's@g.com',
+    password: 'password'
+  }
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockUserRes)
+      })
+    })
+  });
+  it('should fetch with the correct arguments', () => {
+    const expected = ['http://localhost:3001/api/v1/users', {
+      method: 'POST',
+      body: JSON.stringify(mockUser),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }]
+    createNewUser(mockUser);
+    expect(window.fetch).toHaveBeenCalledWith(...expected)
+  });
+  it('should return a user with an id (HAPPY)', () => {
+    expect(createNewUser(mockUser)).resolves.toEqual(mockUserRes);
+  });
+  it('should tell us an email has already been used if the res has a status of 500 (SAD)', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        status: 500
+      })
+    })
+    expect(createNewUser(mockUser)).rejects.toEqual(Error('This email has already been used'))
+  })
+  it('should throw an error if something else goes wrong (SAD)', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      })
+    })
+    expect(createNewUser(mockUser)).rejects.toEqual(Error('Woops! Something went wrong'))
+  })
+});
+
+
