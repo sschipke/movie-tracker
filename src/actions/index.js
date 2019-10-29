@@ -1,19 +1,19 @@
-export const setMovies = movies => ({
+export const setMovies = (movies) => ({
   type: 'SET_MOVIES',
-  movies
+  movies,
 });
 
-export const setUpcomingMovies = upcomingMovies => ({
+export const setUpcomingMovies = (upcomingMovies) => ({
   type: 'SET_UPCOMING_MOVIES',
-  upcomingMovies
+  upcomingMovies,
 });
 
-export const setUser = user => ({
+export const setUser = (user) => ({
   type: 'SET_USER',
-  user
+  user,
 });
 
-export const setFavorites = favorites => ({
+export const setFavorites = (favorites) => ({
   type: 'SET_FAVORITES',
-  favorites
+  favorites,
 });

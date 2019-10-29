@@ -7,29 +7,33 @@ import { connect } from 'react-redux';
 
 export const Favorites = ({movies, user, toggleFavorites}) => {
 
-  if(!user.name){
+  if (!user.name) {
     return (
-      <div className='favorites'>
-        <h1>Please <Link to='/login'>login</Link> to save favorites.</h1>
+      <div className="favorites">
+        <h1>
+          Please
+          <Link to="/login">login</Link>
+          to save favorites.
+        </h1>
       </div>
     );
   };
 
-  if(movies.length > 0 && user.name) {
-    const favoriteList = movies.map(movie => (<MovieCard key={Math.random()} movie={movie} toggleFavorites={toggleFavorites}/>))
+  if (movies.length > 0 && user.name) {
+    const favoriteList = movies.map((movie) => (<MovieCard key={Math.random()} movie={movie} toggleFavorites={toggleFavorites} />));
     return (
-      <div className='favorites'>
+      <div className="favorites">
         {favoriteList}
       </div>
     );
-  };
+  }
 
-  return(
-    <div className='favorites'>
-      <h1 className = 'favorite__message'>
+  return (
+    <div className="favorites">
+      <h1 className = "favorite__message">
         Please select a few favorite movies from
       </h1>
-      <Link to='/now_playing'>
+      <Link to="/now_playing">
         <h1>
         Now Playing
         </h1>
@@ -37,7 +41,7 @@ export const Favorites = ({movies, user, toggleFavorites}) => {
       <h2>
         or 
       </h2>
-      <Link to='/upcoming' >
+      <Link to="/upcoming" >
         <h1>
           Upcoming Releases
         </h1>
