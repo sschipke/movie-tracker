@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Login alt snapShot should match the snapshot if a user is logged in 1`] = `
+<Redirect
+  to="/"
+/>
+`;
+
 exports[`Login should match the initial snapshot 1`] = `
 <div
   className="login screen-cover"
