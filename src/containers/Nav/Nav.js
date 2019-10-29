@@ -1,10 +1,10 @@
 import React from 'react';
-import { NavLink, Link, Redirect } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Nav.css';
 import PropTypes from 'prop-types';
-import avatar from '../../images/user-avatar.svg'
-import logo from '../../images/MovieSnagLogo.png'
+import avatar from '../../images/user-avatar.svg';
+import logo from '../../images/MovieSnagLogo.png';
 
 export const Nav = ({user}) => {
 
@@ -39,14 +39,12 @@ export const Nav = ({user}) => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
 export const mapStateToProps = state => ({
   user: state.user
-})
-
-
+});
 
 export default connect(mapStateToProps)(Nav);
 

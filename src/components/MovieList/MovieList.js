@@ -10,13 +10,13 @@ const MovieList = ({movies, toggleFavorites}) => {
     toggleFavorites={toggleFavorites} 
     movie={movie} 
     key={Math.random()}
-  />)
+  />);
 
   return(
     <section className='section__movies'>
       {allMovies}
     </section>
-  )
+  );
 
 }
 
