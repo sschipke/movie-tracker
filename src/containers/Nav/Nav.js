@@ -49,3 +49,7 @@ export const mapStateToProps = state => ({
 
 
 export default connect(mapStateToProps)(Nav);
+
+Nav.propTypes = {
+  user: PropTypes.object.isRequired
+}
