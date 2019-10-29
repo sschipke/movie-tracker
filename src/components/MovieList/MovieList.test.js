@@ -34,5 +34,4 @@ describe ('MovieList',() => {
   it('should match the snapshot with all the data passed in correctly', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-})
+});

@@ -36,14 +36,14 @@ export const MovieCard = ({movie, toggleFavorites, favorites}) => {
         </h4>
       </div>
     </Link>
-  )
+  );
 }
 
 export const mapStateToProps = state => ({
   favorites: state.favorites
-})
+});
 
-export default connect(mapStateToProps)(MovieCard)
+export default connect(mapStateToProps)(MovieCard);
 
 MovieCard.propTypes = {
   movie: PropTypes.object.isRequired,

@@ -12,13 +12,13 @@ export const Main = ({movies, upcomingMovies, toggleFavorites}) => {
       <h1 className = 'main__heading-upcoming'>Upcoming Releases</h1>
       <MovieList toggleFavorites={toggleFavorites} className = 'upcoming-movies' movies={upcomingMovies} />
     </main>
-  )
-}
+  );
+};
 
 export const mapStateToProps =  state => ({
   movies: state.movies,
   upcomingMovies: state.upcomingMovies
-})
+});
 
 export default connect(mapStateToProps)(Main);
 
