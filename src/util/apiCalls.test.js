@@ -1,4 +1,4 @@
-import {getMovies, getUpcomingMovies, createNewUser, logInuser, getUserFavorites, postFavorite, deleteFavorite} from  './apiCalls';
+import {getMovies, getUpcomingMovies, createNewUser, logInuser, getUserFavorites, postFavorite, deleteFavorite, logInUser} from  './apiCalls';
 
 describe('getMovies', () => {
     let mockMovies = [{
@@ -82,7 +82,7 @@ describe('getUpcomingMovies', () => {
         ok: false
       })
     });
-    expect(getUpcomingMovies()).resolves.toEqual(Error('Woops! Something went wrong'))
+    expect(getUpcomingMovies()).rejects.toEqual(Error('Woops! Something went wrong'))
   })
 });
 
@@ -137,5 +137,56 @@ describe('createNewUser', () => {
     expect(createNewUser(mockUser)).rejects.toEqual(Error('Woops! Something went wrong'))
   })
 });
+
+describe('logInUser', () => {
+  let mockUserRes = {
+    id: 34,
+    name: 'Sam',
+    email: 's@g.com',
+    password: 'password'
+  }
+  let mockUser = {
+    email: 's@g.com',
+    password: 'password'
+  }
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve(mockUserRes)
+      })
+    })
+  });
+  it('should be called with the correct arguments', () => {
+    const expected = ['http://localhost:3001/api/v1/login', {
+      method: 'POST',
+      body: JSON.stringify(mockUser),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }]
+    logInUser(mockUser);
+    expect(window.fetch).toHaveBeenCalledWith(...expected)
+  });
+  it('should return a user with an id (HAPPY)', () => {
+    expect(createNewUser(mockUser)).resolves.toEqual(mockUserRes);
+  });
+  it('should tell us if the email or password is wrong if the res has a status of 401 (SAD)', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        status: 401
+      })
+    })
+    expect(createNewUser(mockUser)).rejects.toEqual(Error('email or password is incorrect'))
+  })
+  it('should throw an error if something else goes wrong (SAD)', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      })
+    })
+    expect(createNewUser(mockUser)).rejects.toEqual(Error('Woops! Something went wrong'))
+  })
+})
 
 
