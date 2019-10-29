@@ -18,6 +18,9 @@ const cleanMovieData = data => data.map(movie => ({
 
 export const getUpcomingMovies = async () => {
   let res = await fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=9e1950f701d0af712babdede31811e9e&language=en-US')
+  if (!res.ok) {
+    throw Error('Woops! Something went wrong')
+  }
   let data = await res.json()
   return cleanMovieData(data.results)
 }
@@ -55,17 +58,23 @@ export const logInUser = async user => {
   }
   let res = await fetch(url, options)
 
-  if (!res.ok) {
-    if (res.status === 401) {
-      throw Error('email or password is incorrect')
-    }
+  if (res.status === 401) {
+    throw Error('email or password is incorrect')
   }
+
+  if (!res.ok) {
+    throw Error('Woops! Something went wrong')
+  }
+
   return res.json();
 }
 
 export const getUserFavorites = async userID => {
   let url = `http://localhost:3001/api/v1/users/${userID}/moviefavorites`;
   let res = await fetch(url);
+  if (!res.ok) {
+    throw Error('Unable to get favorites')
+  }
   let parsedRes = await res.json();
   return parsedRes.favorites;
 }
