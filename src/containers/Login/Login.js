@@ -40,6 +40,7 @@ export class Login extends Component {
     }
     try {
       let newUser = await createNewUser(user)
+      this.saveToStorage({ ...newUser, password: user.password })
       await this.props.setUser(newUser)
       this.setState({ isLoggedIn: true })
     } catch ({ message }) {
@@ -53,12 +54,18 @@ export class Login extends Component {
     try {
       let currentUser = await logInUser(user);
       let userFavorites = await getUserFavorites(currentUser.id);
+      console.log({ ...currentUser, password: user.password })
+      this.saveToStorage({...currentUser, password: user.password})
       await this.props.setFavorites(userFavorites)
       await this.props.setUser(currentUser)
       this.setState({isLoggedIn: true})
     } catch ({ message }) {
       this.setState({ error: message, logInError:true })
     }
+  }
+
+  saveToStorage = user => {
+    localStorage.setItem("user", JSON.stringify(user))
   }
 
   render = () => {
