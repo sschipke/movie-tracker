@@ -272,4 +272,32 @@ describe('postFavorite', () => {
   });
 })
 
+describe('deleteFavorite', () => {
+  beforeEach(() => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: true
+      })
+    })
+  });
+  it('should be called with the correct arguments', () => {
+    const expected = ['http://localhost:3001/api/v1/users/5/moviefavorites/6453', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }]
+    deleteFavorite(5, 6453);
+    expect(window.fetch).toHaveBeenCalledWith(...expected)
+  });
+  it('should throw an error if something goes wrong (SAD)', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      })
+    })
+    expect(deleteFavorite(5, 1232)).rejects.toEqual(Error('Could not delete favorite.'));
+  });
+})
+
 
