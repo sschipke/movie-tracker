@@ -32,6 +32,7 @@ exports[`Favorites with user and selected favorites should match the snapshot wi
         "vote_average": 7.4,
       }
     }
+    toggleFavorites={[MockFunction]}
   />
   <Connect(MovieCard)
     key="12345"
@@ -45,6 +46,7 @@ exports[`Favorites with user and selected favorites should match the snapshot wi
         "vote_average": 7.3,
       }
     }
+    toggleFavorites={[MockFunction]}
   />
 </div>
 `;
