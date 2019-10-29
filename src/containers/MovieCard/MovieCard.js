@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './MovieCard.css';
@@ -43,3 +44,9 @@ export const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)(MovieCard)
+
+MovieCard.propTypes = {
+  movie: PropTypes.object.isRequired,
+  toggleFavorites: PropTypes.func.isRequired,
+  favorites: PropTypes.array.isRequired
+}
