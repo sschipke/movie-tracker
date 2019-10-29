@@ -1,4 +1,10 @@
+# MovieSnag: A Movie Tracking web app
 
+## Summary
+
+Ever been curious about what movies are currently out in theaters and wish you could get more info about them? Welcome to Movie Tracker where you can sign in, see the latest movies, and favorite them for later.
+
+MovieSnag uses the Movie DB API to provide the user a database of multitudes of popular films. Designed to practice the usage of Redux store combined with a React application. The application's componenents are fully tested using the Jest testing suite.
 
 
 ## Collaborators  
@@ -38,7 +44,7 @@ This was a group project for Mod Three at Turing. The major focus was to further
 4. Then run   
               ```npm start```
 
-
+![image](./DOCS/MovieSnagCap.gif)
 
 ### Login Screen
 
@@ -63,3 +69,5 @@ This was a group project for Mod Three at Turing. The major focus was to further
 ### Original Wireframes
 
 </a>
+
+
