@@ -6,6 +6,7 @@ describe ('MovieList',() => {
   const mockMath = Object.create(global.Math);
   mockMath.random = () => 0.5;
   global.Math = mockMath;
+  const mockToggleFavorites = jest.fn()
   const mockMovies = [
     {
       "poster_path": "/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
@@ -26,7 +27,8 @@ describe ('MovieList',() => {
   ]; 
 
   const wrapper = shallow(<MovieList 
-                          movies={mockMovies}
+                          movies = {mockMovies}
+                          toggleFavorites = {mockToggleFavorites}
                           />);
 
   it('should match the snapshot with all the data passed in correctly', () => {
