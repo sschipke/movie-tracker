@@ -124,14 +124,14 @@ describe('Login', () => {
       email: 'st@g.com',
       password: 1234
     }
-    it('should call logInUser', () => {
+    it('should call logInUser', async () => {
       logInUser.mockImplementation(() => {
         return Promise.resolve(mockUser)
       })
     wrapper.instance().setState({ email: mockUser.email, password:mockUser.password });
-    wrapper.instance().logIn();
+    await wrapper.instance().logIn();
     expect(logInUser).toHaveBeenCalledWith(mockUser)
-    // expect(wrapper.state('isLoggedIn')).toEqual(true)
+    expect(wrapper.state('isLoggedIn')).toEqual(true)
     })
     it.skip('should set the state if an error occurs', () => {
       logInUser.mockImplementation(() => Promise.reject({message: 'woops'}));
