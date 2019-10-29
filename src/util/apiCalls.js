@@ -1,5 +1,8 @@
 export const getMovies = async () => {
   let res = await fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=9e1950f701d0af712babdede31811e9e&language=en-US')
+  if (!res.ok) {
+    throw Error('Woops! Something went wrong')
+  }
   let data = await res.json()
   return cleanMovieData(data.results)
 }
@@ -30,11 +33,14 @@ export const createNewUser = async user => {
   }
   let res = await fetch(url, options);
 
-  if (!res.ok) {
-    if(res.status===500) {
-      throw Error('This email has already been used')
-    }
+  if(res.status===500) {
+    throw Error('This email has already been used')
   }
+
+  if(!res.ok) {
+    throw Error('Woops! Something went wrong')
+  }
+
   return res.json();
 }
 
