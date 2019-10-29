@@ -1,4 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
+## Collaborators
+
+- Scott Schipke- [github account](https://github.com/sschipke)
+- Kirk Veitch - [github account](https://github.com/KVeitch)
+
+## Technology
+
+- [The Movie DataBase API](https://www.themoviedb.org/)
+- [Favorites Backend](https://github.com/turingschool-examples/favorites-tracker-api)
+- React
+- Redux
+- React Router
+- Enzyme/Jest
+- JavaScript
+- SCSS
 
 ## Available Scripts
 
