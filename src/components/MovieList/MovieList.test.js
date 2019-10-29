@@ -31,5 +31,4 @@ describe ('MovieList',() => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('',() => {})
 })
