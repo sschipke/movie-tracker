@@ -3,7 +3,9 @@ import { shallow } from 'enzyme';
 import MovieList from './MovieList';
 
 describe ('MovieList',() => {
-  global.Math.random = jest.fn().mockImplementation(() => 12345)
+  const mockMath = Object.create(global.Math);
+  mockMath.random = () => 0.5;
+  global.Math = mockMath;
   const mockMovies = [
     {
       "poster_path": "/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
@@ -25,7 +27,7 @@ describe ('MovieList',() => {
 
   const wrapper = shallow(<MovieList 
                           movies={mockMovies}
-                          />)
+                          />);
 
   it('should match the snapshot with all the data passed in correctly', () => {
     expect(wrapper).toMatchSnapshot();

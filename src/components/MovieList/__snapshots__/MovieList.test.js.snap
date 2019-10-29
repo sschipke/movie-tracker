@@ -5,7 +5,7 @@ exports[`MovieList should match the snapshot with all the data passed in correct
   className="section__movies"
 >
   <Connect(MovieCard)
-    key="0.11850325599103861"
+    key="0.5"
     movie={
       Object {
         "id": 290859,
@@ -18,7 +18,7 @@ exports[`MovieList should match the snapshot with all the data passed in correct
     }
   />
   <Connect(MovieCard)
-    key="0.9172946653035161"
+    key="0.5"
     movie={
       Object {
         "id": 338967,
