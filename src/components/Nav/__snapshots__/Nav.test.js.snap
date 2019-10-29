@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav should match the snapshot 1`] = `
+<header>
+  <div
+    className="header__nav"
+  >
+    <h1
+      className="header__logo"
+    >
+      <img
+        alt="MovieSnag logo"
+        className="logo"
+        src="MovieSnagLogo.png"
+      />
+      ovie
+      <span
+        className="red"
+      >
+        Snag
+      </span>
+    </h1>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/"
+    >
+      Home
+    </NavLink>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/now_playing"
+    >
+      Now Playing
+    </NavLink>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/upcoming"
+    >
+      Coming Soon
+    </NavLink>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/favorites"
+    >
+      Favorites
+    </NavLink>
+  </div>
+  <div
+    className="header__user-menu"
+  >
+    <div
+      className="inner"
+    >
+      <h3
+        className="header__user-name"
+      >
+        <a
+          href="/login"
+        >
+          Login
+        </a>
+      </h3>
+      <img
+        alt="line drawing of a torso"
+        className="user-avatar"
+        src="user-avatar.svg"
+      />
+      <p />
+    </div>
+  </div>
+</header>
+`;
+
+exports[`Nav should render a logout button if a user is passed in 1`] = `
+<header>
+  <div
+    className="header__nav"
+  >
+    <h1
+      className="header__logo"
+    >
+      <img
+        alt="MovieSnag logo"
+        className="logo"
+        src="MovieSnagLogo.png"
+      />
+      ovie
+      <span
+        className="red"
+      >
+        Snag
+      </span>
+    </h1>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/"
+    >
+      Home
+    </NavLink>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/now_playing"
+    >
+      Now Playing
+    </NavLink>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/upcoming"
+    >
+      Coming Soon
+    </NavLink>
+    <NavLink
+      activeClassName="selectedLink"
+      className="NavLink"
+      exact={true}
+      to="/favorites"
+    >
+      Favorites
+    </NavLink>
+  </div>
+  <div
+    className="header__user-menu"
+  >
+    <div
+      className="inner"
+    >
+      <h3
+        className="header__user-name"
+      >
+        Greg
+         
+        <a
+          href="/login"
+        >
+          Logout
+        </a>
+      </h3>
+      <img
+        alt="line drawing of a torso"
+        className="user-avatar"
+        src="user-avatar.svg"
+      />
+      <p />
+    </div>
+  </div>
+</header>
+`;

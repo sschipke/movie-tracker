@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import avatar from '../../images/user-avatar.svg'
 import logo from '../../images/MovieSnagLogo.png'
 
-const Nav = ({user}) => {
+export const Nav = ({user}) => {
 
   return (
     <header>
@@ -40,7 +40,7 @@ const Nav = ({user}) => {
   )
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   user: state.user
 })
 
