@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MovieList from '../../components/MovieList/MovieList';
 import { connect } from 'react-redux';
 import './Main.css';
@@ -20,3 +21,9 @@ export const mapStateToProps =  state => ({
 })
 
 export default connect(mapStateToProps)(Main);
+
+Main.propTypes = {
+  movies: PropTypes.array,
+  upcomingMovies: PropTypes.array,
+  toggleFavorites: PropTypes.func.isRequired
+}
