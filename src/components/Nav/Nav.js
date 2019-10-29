@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
+import { NavLink, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './Nav.css';
 import PropTypes from 'prop-types';
@@ -11,9 +11,11 @@ export const Nav = ({user}) => {
   return (
     <header>
       <div className='header__nav'>
-      <h1 className='header__logo'>
-      <img alt='MovieSnag logo' src={logo} className='logo'/>
+      <Link to='./' className=''>
+        <h1 className='header__logo'>
+        <img alt='MovieSnag logo' src={logo} className='logo'/>
         ovie<span className='red'>Snag</span></h1>
+      </Link>
         <NavLink exact to='/' className='NavLink' activeClassName="selectedLink" >  
           Home
         </NavLink>
