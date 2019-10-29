@@ -6,7 +6,7 @@ import { getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFav
 import { setMovies, setUpcomingMovies, setFavorites } from '../../actions'
 
 
-jest.mock('../util/apiCalls.js')
+jest.mock('../../util/apiCalls')
 
 describe('App',() => {
   let wrapper;
