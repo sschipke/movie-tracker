@@ -1,16 +1,79 @@
 import React from 'react';
-import { Login, mapStateToProps } from './Login';
+import { Login, mapDispatchToProps } from './Login';
 import { shallow } from 'enzyme';
 import { createNewUser, logInUser, getUserFavorites } from '../../util/apiCalls';
 import * as actions from '../../actions';
-import { create } from 'istanbul-reports';
 
 jest.mock('../../util/apiCalls');
 
+createNewUser.mockImplementation(()=> {
+  return Promise.resolve({
+    ok: true,
+    json: () => jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        id: 5,
+        name: 'Steve',
+        email: 's@gmail.com',
+        password: '1234'
+      })
+    })
+  })
+});
+
+logInUser.mockImplementation(() => Promise.resolve({
+    id: 5,
+    name: 'Steve',
+    email: 's@gmail.com',
+    password: '1234'
+}));
+let mockFaves = [{
+  id: 15,
+  movie_id: 578189,
+  user_id: 4,
+  title: "Black and Blue",
+  poster_path: "/fjmMu9fpqMMF17mCyLhNfkagKB0.jpg",
+  release_date: "2019-10-25",
+  vote_average: "4.6",
+  overview: "Exposure follows a rookie Detroit African-American female cop who stumbles upon corrupt officers who are murdering a drug dealer, an incident captured by her body cam. They pursue her through the night in an attempt to destroy the footage, but to make matters worse, they've tipped off a criminal gang that she's responsible for the dealer's death."
+}, {
+  id: 22,
+  movie_id: 454640,
+  user_id: 4,
+  title: "The Angry Birds Movie 2",
+  poster_path: "/ebe8hJRCwdflNQbUjRrfmqtUiNi.jpg",
+  release_date: "2019-08-14",
+  vote_average: "6.4",
+  overview: "Red, Chuck, Bomb and the rest of their feathered friends are surprised when a green pig suggests that they put aside their differences and unite to fight a common threat. Aggressive birds from an island covered in ice are planning to use an elaborate weapon to destroy the fowl and swine."
+}]
+getUserFavorites.mockImplementation(() => Promise.resolve(mockFaves));
+
+actions.setFavorites = jest.fn().mockImplementation(() => Promise.resolve(mockFaves))
+actions.setUser = jest.fn().mockImplementation(() => Promise.resolve({
+  id: 5,
+  name: 'Steve',
+  email: 's@gmail.com',
+  password: '1234'
+}))
+
+
+
+
 describe('Login', () => {
+  let mockUser = {
+    id: 5,
+      name: 'Steve',
+        email: 's@gmail.com',
+          password: '1234'
+  }
+  actions.setUser = jest.fn().mockImplementation(() =>
+    Promise.resolve(mockUser)
+  )
   let wrapper;
   beforeEach(() => {
-    wrapper = shallow(<Login />)
+    wrapper = shallow(<Login 
+      setUser={actions.setUser}
+    />)
+      
   })
   it('should match the initial snapshot', () => {
     expect(wrapper).toMatchSnapshot()
@@ -58,7 +121,8 @@ describe('Login', () => {
   describe('handleSubmit', () => {
     let wrapper;
     beforeEach(() => {
-      wrapper = shallow(<Login />)
+      wrapper = shallow(<Login setUser={actions.setUser}
+        setFavorites={actions.setFavorites} />)
     })
     it('should prevent the default action when the form is submitted', () => {
       const mockEvent = {preventDefault: jest.fn()};
@@ -67,6 +131,9 @@ describe('Login', () => {
     })
   })
   describe('createUser', () => {
+    beforeEach(() => {
+      wrapper = shallow(<Login setUser={actions.setUser} setFavorites={actions.setFavorites} />)
+    })
     let mockUser = {
       id: 4,
       name: "Susan",
@@ -105,45 +172,62 @@ describe('Login', () => {
       wrapper.instance().createUser();
       expect(createNewUser).toHaveBeenCalledWith(mockNewUser);
     })
-    it.skip('should update its state to be logged in', () => {
+    it('should update its state to be logged in', async () => {
       wrapper.instance().setState({ name: 'Susan', email: 'susan@gmail.com', password: 'password' });
       expect(wrapper.state('isLoggedIn')).toEqual(false);
-      wrapper.instance().createUser()
+      await wrapper.instance().createUser()
       expect(wrapper.state('isLoggedIn')).toEqual(true);
     });
-    it.skip('should set an error message to state if someting goes wrong' , () => {
+    it('should set an error message to state if someting goes wrong' , async () => {
       createNewUser.mockImplementation(() => {
-        return Error('Woops')
+        throw Error('Woops')
       });
-      wrapper.instance().createUser();
-      // Assertion
+      wrapper.instance().forceUpdate()
+      await wrapper.instance().createUser();
+      expect(wrapper.state('error')).toEqual('Woops')
     })
   })
+
   describe('logIn', () => {
+    
     let mockUser = {
       email: 'st@g.com',
       password: 1234
     }
-    it('should call logInUser', () => {
-      logInUser.mockImplementation(() => {
-        return Promise.resolve(mockUser)
-      })
+    it('should call logInUser', async () => {
     wrapper.instance().setState({ email: mockUser.email, password:mockUser.password });
-    wrapper.instance().logIn();
-    expect(logInUser).toHaveBeenCalledWith(mockUser)
-    // expect(wrapper.state('isLoggedIn')).toEqual(true)
+    await wrapper.instance().logIn();
+    await expect(logInUser).toHaveBeenCalledWith(mockUser)
     })
-    it.skip('should set the state if an error occurs', () => {
-      logInUser.mockImplementation(() => Promise.reject({message: 'woops'}));
-      wrapper.instance().logIn();
-      expect(wrapper.state('logInError')).toEqual(true);
+    it('should set the state if an error occurs', async () => {
+      logInUser.mockImplementation(() =>{throw Error('Woops')});
+      wrapper.instance().forceUpdate()      
+      await wrapper.instance().logIn();
+      await expect(wrapper.state('logInError')).toEqual(true);
     })
   })
   describe('alt snapShot', () => {
     it('should match the snapshot if a user is logged in' ,() => {
-      let wrapper = shallow(<Login />);
+      let wrapper = shallow(<Login setUser={actions.setUser} />);
       wrapper.instance().setState({ isLoggedIn: true });
       expect(wrapper).toMatchSnapshot()
     })
   })
+  describe('mapDispatchToProps', () => {
+    it('should call Dispatch with setUser action when setUser is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = actions.setUser('SET_USER', mockUser);
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.setUser('SET_USER', mockUser);
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+    it('should call Dispatch with setFavorites action when setFavorites is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = actions.setFavorites('SET_FAVORITES', mockFaves);
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.setFavorites('SET_FAVORITES', mockFaves);
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+  })
 })
+
