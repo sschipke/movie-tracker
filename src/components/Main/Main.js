@@ -3,7 +3,7 @@ import MovieList from '../MovieList/MovieList';
 import { connect } from 'react-redux';
 import './Main.css';
 
-const Main = ({movies, upcomingMovies, toggleFavorites}) => {
+export const Main = ({movies, upcomingMovies, toggleFavorites}) => {
   return (
     <main>
       <h1 className = 'main__heading-playing'>Playing this week</h1>
@@ -14,7 +14,7 @@ const Main = ({movies, upcomingMovies, toggleFavorites}) => {
   )
 }
 
-const mapStateToProps =  state => ({
+export const mapStateToProps =  state => ({
   movies: state.movies,
   upcomingMovies: state.upcomingMovies
 })

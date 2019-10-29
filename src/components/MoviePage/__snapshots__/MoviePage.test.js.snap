@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviePage should match the snapshot with all the data passed in correctly 1`] = `
+<div
+  className="movie-page"
+>
+  <img
+    alt="movie poster"
+    className="movie__image"
+    src="https://image.tmdb.org/t/p/original/undefined"
+  />
+  <div
+    className="movie__info"
+  >
+    <div
+      className="movie-page__title"
+    />
+    <div
+      className="movie-page__rating"
+    >
+      Rated: 
+       out of 10
+    </div>
+    <div
+      className="movie-page__plot"
+    />
+    <div
+      className="movie-page__release"
+    >
+      Released on 
+    </div>
+  </div>
+</div>
+`;
