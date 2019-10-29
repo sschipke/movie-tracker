@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 
@@ -108,4 +109,14 @@ export const mapDispatchToProps = dispatch => (bindActionCreators({
   setMovies, setUpcomingMovies, setFavorites
 }, dispatch))
 
-export default connect(mapStateToProps, mapDispatchToProps) (App)
+export default connect(mapStateToProps, mapDispatchToProps) (App);
+
+App.propTypes = {
+  movies: PropTypes.array,
+  upcomingMovies: PropTypes.array,
+  favorites: PropTypes.array,
+  user: PropTypes.object,
+  setMovies: PropTypes.func.isRequired,
+  setUpcomingMovies: PropTypes.func.isRequired,
+  setFavorites: PropTypes.func.isRequired
+}
