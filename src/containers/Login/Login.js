@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom'
@@ -115,3 +116,8 @@ export const mapDispatchToProps = dispatch => bindActionCreators({setUser, setFa
 
 
 export default connect(null, mapDispatchToProps)(Login);
+
+Login.propTypes = {
+  setUser: PropTypes.func.isRequired,
+  setFavorites: PropTypes.func
+}
