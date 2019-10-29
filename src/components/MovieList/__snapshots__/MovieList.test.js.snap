@@ -16,6 +16,7 @@ exports[`MovieList should match the snapshot with all the data passed in correct
         "vote_average": 7.4,
       }
     }
+    toggleFavorites={[MockFunction]}
   />
   <Connect(MovieCard)
     key="0.5"
@@ -29,6 +30,7 @@ exports[`MovieList should match the snapshot with all the data passed in correct
         "vote_average": 7.3,
       }
     }
+    toggleFavorites={[MockFunction]}
   />
 </section>
 `;

@@ -21,7 +21,8 @@ describe('Favorites with user',()=>{
     }
     const wrapper = shallow(<Favorites 
       user = {mockUser}
-      movies = {[]}                        
+      movies = {[]}
+      toggleFavorites = {jest.fn()}                        
       />)
     expect(wrapper).toMatchSnapshot();
   });
@@ -55,7 +56,8 @@ describe('Favorites with user and selected favorites',()=>{
     ]
     const wrapper = shallow(<Favorites 
       user = {mockUser}
-      movies = {mockFavoriteMovies}                     
+      movies = {mockFavoriteMovies}
+      toggleFavorites = {jest.fn()}                     
       />)
     expect(wrapper).toMatchSnapshot();
   });

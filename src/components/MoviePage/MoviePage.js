@@ -13,9 +13,8 @@ const MoviePage = (movie) => {
         <div className='movie-page__release'>Released on {movie.release_date}</div>
       </div>
     </div>
-  )
-
-}
+  );
+};
 
 export default MoviePage;
 

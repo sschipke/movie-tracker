@@ -1,8 +1,7 @@
 import { setMovies, 
         setUpcomingMovies, 
         setUser, 
-        setFavorites } from './index.js'
-
+        setFavorites } from './index.js';
 
 describe('action creators',() => {
   it('setMovies should return the correct object', () => {
@@ -30,7 +29,7 @@ describe('action creators',() => {
     });
     const results = setMovies(movies);
 
-    expect(results).toEqual(expected)
+    expect(results).toEqual(expected);
   });
 
   it('setUpcomingMovies  should return the correct object', () => {
@@ -52,13 +51,12 @@ describe('action creators',() => {
         "release_date": "2019-10-18"
       }
     ];
-
     const expected = ({
       type: 'SET_UPCOMING_MOVIES',
       upcomingMovies
     });
-
     const results = setUpcomingMovies(upcomingMovies);
+
     expect(results).toEqual(expected);
   });
 
@@ -67,16 +65,14 @@ describe('action creators',() => {
       name:'Susan',
       email:'susan@gmail.com',
       password:'WhatAnimalIsBest'
-    }
-
+    };
     const expected = ({
       type: 'SET_USER',
       user
-    })
+    });
   const results = setUser(user);
 
-  expect(results).toEqual(expected)
-
+  expect(results).toEqual(expected);
   });
 
   it('setFavorites should return the correct object', () => {
@@ -101,11 +97,9 @@ describe('action creators',() => {
     const expected = ({
       type: 'SET_FAVORITES',
       favorites
-    })
+    });
     const results = setFavorites(favorites);
   
-    expect(results).toEqual(expected)
+    expect(results).toEqual(expected);
   });
-
-
 })

@@ -29,6 +29,7 @@ exports[`Main should match the snapshot with all the data passed in correctly 1`
         },
       ]
     }
+    toggleFavorites={[MockFunction]}
   />
   <h1
     className="main__heading-upcoming"
@@ -57,6 +58,7 @@ exports[`Main should match the snapshot with all the data passed in correctly 1`
         },
       ]
     }
+    toggleFavorites={[MockFunction]}
   />
 </main>
 `;

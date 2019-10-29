@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MovieCard from '../MovieCard/MovieCard';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import './Favorites.css';
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 
 export const Favorites = ({movies, user, toggleFavorites}) => {
 
@@ -13,8 +12,8 @@ export const Favorites = ({movies, user, toggleFavorites}) => {
       <div className='favorites'>
         <h1>Please <Link to='/login'>login</Link> to save favorites.</h1>
       </div>
-    )
-  }
+    );
+  };
 
   if(movies.length > 0 && user.name) {
     const favoriteList = movies.map(movie => (<MovieCard key={Math.random()} movie={movie} toggleFavorites={toggleFavorites}/>))
@@ -22,8 +21,8 @@ export const Favorites = ({movies, user, toggleFavorites}) => {
       <div className='favorites'>
         {favoriteList}
       </div>
-    )
-  }
+    );
+  };
 
   return(
     <div className='favorites'>
@@ -44,12 +43,12 @@ export const Favorites = ({movies, user, toggleFavorites}) => {
         </h1>
       </Link>    
     </div>
-  )
-}
+  );
+};
 
 export const mapStateToProps = state => ({
   user: state.user
-})
+});
 
 export default connect(mapStateToProps, null) (Favorites);
 

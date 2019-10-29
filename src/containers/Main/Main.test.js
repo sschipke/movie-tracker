@@ -22,10 +22,11 @@ describe ('Main',() => {
     }
   ];
   const mockUpcomingMovies = mockMovies;
-
+  const mockToggleFavorites = jest.fn()
   const wrapper = shallow(<Main 
-                          movies={mockMovies}
-                          upcomingMovies={mockUpcomingMovies}
+                          movies = {mockMovies}
+                          upcomingMovies = {mockUpcomingMovies}
+                          toggleFavorites = {mockToggleFavorites}
                           />)
 
   it('should match the snapshot with all the data passed in correctly', () => {
