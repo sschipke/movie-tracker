@@ -9,10 +9,10 @@ import Login from '../Login/Login';
 import Nav from '../Nav/Nav';
 import Favorites from '../Favorites/Favorites';
 import Main from '../Main/Main'
-import MoviePage from '../MoviePage/MoviePage';
+import MoviePage from '../../components/MoviePage/MoviePage';
 import {getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite} from '../../util/apiCalls';
 import {setMovies, setUpcomingMovies,  setFavorites} from '../../actions';
-import MovieList from '../MovieList/MovieList'
+import MovieList from '../../components/MovieList/MovieList'
 import './App.css';
 import { connect } from 'react-redux';
 
