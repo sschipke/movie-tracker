@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import MovieList from './MovieList';
 
 describe ('MovieList',() => {
+  global.Math.random = jest.fn().mockImplementation(() => 12345)
   const mockMovies = [
     {
       "poster_path": "/vqzNJRH4YyquRiWxCCOH0aXggHI.jpg",
