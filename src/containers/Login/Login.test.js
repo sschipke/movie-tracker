@@ -1,5 +1,5 @@
 import React from 'react';
-import { Login, mapStateToProps } from './Login';
+import { Login, mapDispatchToProps } from './Login';
 import { shallow } from 'enzyme';
 import { createNewUser, logInUser, getUserFavorites } from '../../util/apiCalls';
 import * as actions from '../../actions';
@@ -211,6 +211,22 @@ describe('Login', () => {
       let wrapper = shallow(<Login setUser={actions.setUser} />);
       wrapper.instance().setState({ isLoggedIn: true });
       expect(wrapper).toMatchSnapshot()
+    })
+  })
+  describe('mapDispatchToProps', () => {
+    it('should call Dispatch with setUser action when setUser is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = actions.setUser('SET_USER', mockUser);
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.setUser('SET_USER', mockUser);
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
+    it('should call Dispatch with setFavorites action when setFavorites is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = actions.setFavorites('SET_FAVORITES', mockFaves);
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.setFavorites('SET_FAVORITES', mockFaves);
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
     })
   })
 })
