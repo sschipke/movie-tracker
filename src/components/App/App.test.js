@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { App, mapStateToProps, mapDispatchToProps} from './App';
 import { shallow } from 'enzyme';
-import { getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite } from '../util/apiCalls'
-import { setMovies, setUpcomingMovies, setFavorites } from '../actions'
+import { getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite } from '../../util/apiCalls'
+import { setMovies, setUpcomingMovies, setFavorites } from '../../actions'
 
 
 jest.mock('../util/apiCalls.js')
