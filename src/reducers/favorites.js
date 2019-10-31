@@ -1,4 +1,4 @@
-const favorites = (state =[], action) => {
+const favorites = (state = [], action) => {
   switch (action.type) {
     case 'SET_FAVORITES':
       return action.favorites;

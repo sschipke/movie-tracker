@@ -37,9 +37,10 @@ export class Login extends Component {
       password,
     };
     try {
-      const newUser = await createNewUser(user);
-      await this.props.setUser(newUser);
-      this.setState({ isLoggedIn: true });
+      const newUser = await createNewUser(user)
+      this.saveToStorage({ ...newUser, password: user.password })
+      await this.props.setUser(newUser)
+      this.setState({ isLoggedIn: true })
     } catch ({ message }) {
       this.setState({ error: message });
     }
@@ -51,12 +52,17 @@ export class Login extends Component {
     try {
       const currentUser = await logInUser(user);
       const userFavorites = await getUserFavorites(currentUser.id);
-      await this.props.setFavorites(userFavorites);
-      await this.props.setUser(currentUser);
-      this.setState({ isLoggedIn: true });
+      this.saveToStorage({ ...currentUser, password: user.password });
+      await this.props.setFavorites(userFavorites)
+      await this.props.setUser(currentUser)
+      this.setState({isLoggedIn: true})
     } catch ({ message }) {
       this.setState({ error: message, logInError: true });
     }
+  }
+
+  saveToStorage = user => {
+    localStorage.setItem("user", JSON.stringify(user))
   }
 
   render = () => {

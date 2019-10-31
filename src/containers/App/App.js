@@ -10,14 +10,8 @@ import Nav from '../Nav/Nav';
 import Favorites from '../Favorites/Favorites';
 import Main from '../Main/Main';
 import MoviePage from '../../components/MoviePage/MoviePage';
-import {
-  getMovies,
-  getUpcomingMovies,
-  getUserFavorites,
-  deleteFavorite,
-  postFavorite,
-} from '../../util/apiCalls';
-import { setMovies, setUpcomingMovies, setFavorites } from '../../actions';
+import {getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite, logInUser} from '../../util/apiCalls';
+import { setMovies, setUpcomingMovies, setFavorites, setUser } from '../../actions';
 import MovieList from '../../components/MovieList/MovieList';
 import './App.css';
 
@@ -27,7 +21,8 @@ export class App extends Component {
       setMovies,
       setUpcomingMovies,
       setFavorites,
-      user,
+      setUser,
+      user
     } = this.props;
     try {
       const data = await getMovies();
@@ -42,6 +37,21 @@ export class App extends Component {
     } catch (error) {
       console.log (error)
     };
+
+    if(localStorage.getItem("user")) {
+      console.log(JSON.parse(localStorage.getItem("user")))
+      const savedUser = JSON.parse(localStorage.getItem("user"));
+      const {email, password} = savedUser
+      try {
+        let userParams = {email, password}
+        let currentUser = await logInUser(userParams);
+        let userFavorites = await getUserFavorites(currentUser.id);
+        setFavorites(userFavorites);
+        setUser(currentUser);
+      } catch({message}) {
+        console.log(message)
+      }
+    }
 
     if(user.name) {
       try {
@@ -83,24 +93,26 @@ export class App extends Component {
     }
   };
 
+  logOut = () => {
+    localStorage.clear()
+  }
+
+
+
   render = () => {
     return (
       <div className="App">
-        <Route exact path="/login" render={ (props)=> <Login {...props}/>} />
-        <Route path="/" render={ () => <Nav /> } />
-        <Route exact path="/" render={() => <Main toggleFavorites={this.toggleFavorites} /> } />
-        <Route exact path="/favorites" render={ () => <Favorites toggleFavorites={this.toggleFavorites} movies={this.props.favorites} /> } />
-        <Route
-          exact
-          path='/movie/:movie_id'
-          render={ ({match}) => {
-            let allMovies = [...this.props.movies, ...this.props.upcomingMovies, ...this.props.favorites];
-            let currentMovie = allMovies.find((movie) => movie.movie_id === parseInt(match.params.movie_id, 10));
-            return (<MoviePage { ...currentMovie }/>);
-          }}
-        />
-        <Route exact path="/upcoming" render={() => <MovieList toggleFavorites={this.toggleFavorites} movies={this.props.upcomingMovies} />} />
-        <Route exact path="/now_playing" render={() => <MovieList toggleFavorites={this.toggleFavorites} movies={this.props.movies} />} />
+        <Route exact path='/login' render={ (props)=> <Login {...props}/>} />
+        <Route path='/' render={ () => <Nav logOut={this.logOut} /> } />
+        <Route exact path='/' render={() => <Main toggleFavorites={this.toggleFavorites} /> } />
+        <Route exact path='/favorites' render={ () => <Favorites toggleFavorites={this.toggleFavorites} movies={this.props.favorites} /> } />
+        <Route exact path='/movie/:movie_id' render={ ({match}) => {
+          let allMovies = [...this.props.movies, ...this.props.upcomingMovies, ...this.props.favorites];
+          let currentMovie = allMovies.find(movie => movie.movie_id === parseInt(match.params.movie_id))
+          return (<MoviePage {...currentMovie}/>)
+        }}/>
+        <Route exact path='/upcoming' render={() => <MovieList toggleFavorites={this.toggleFavorites} movies={this.props.upcomingMovies}/> } />
+        <Route exact path='/now_playing' render={() => <MovieList toggleFavorites={this.toggleFavorites}movies={this.props.movies}/> } />
       </div> 
     );
   };
@@ -113,8 +125,8 @@ export const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export const mapDispatchToProps = (dispatch) => (bindActionCreators({
-  setMovies, setUpcomingMovies, setFavorites,
+export const mapDispatchToProps = dispatch => (bindActionCreators({
+  setMovies, setUpcomingMovies, setFavorites, setUser
 }, dispatch));
 
 export default connect(mapStateToProps, mapDispatchToProps) (App);

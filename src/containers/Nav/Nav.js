@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import avatar from '../../images/user-avatar.svg';
 import logo from '../../images/MovieSnagLogo.png';
 
-export const Nav = ({ user }) => {
+export const Nav = ({user, logOut}) => {
+
   return (
     <header>
       <div className="header__nav">
@@ -34,8 +35,8 @@ export const Nav = ({ user }) => {
       </div>
       <div className="header__user-menu">
         <div className="inner">
-          <h3 className="header__user-name">
-            {user.name ? (<>{user.name} <a href="/login">Logout</a></>) : (<a href="/login">Login</a>)}
+          <h3 className='header__user-name'>
+            {user.name ? (<>{user.name} <a onClick={logOut} href='/login'>Logout</a></>): (<a href='/login'>Login</a>)}
           </h3>
           <img className="user-avatar" alt="line drawing of a torso" src={avatar} />
           <p></p>
