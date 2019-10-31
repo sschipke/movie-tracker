@@ -26,7 +26,7 @@ export const getUpcomingMovies = async () => {
 }
 
 export const createNewUser = async user => {
-  let url = 'http://localhost:3001/api/v1/users'
+  let url = `${process.env.REACT_APP_MOVIE_TRACKER_BACKEND_BASE_URL}/api/v1/users`
   let options = {
       method: 'POST',
       body: JSON.stringify(user),
@@ -48,7 +48,7 @@ export const createNewUser = async user => {
 }
 
 export const logInUser = async user => {
-  let url = 'http://localhost:3001/api/v1/login';
+  let url = `${process.env.REACT_APP_MOVIE_TRACKER_BACKEND_BASE_URL}/api/v1/login`
   let options = {
     method: 'POST',
     body: JSON.stringify(user),
@@ -70,7 +70,7 @@ export const logInUser = async user => {
 }
 
 export const getUserFavorites = async userID => {
-  let url = `http://localhost:3001/api/v1/users/${userID}/moviefavorites`;
+  let url = `${process.env.REACT_APP_MOVIE_TRACKER_BACKEND_BASE_URL}/api/v1/users/${userID}/moviefavorites`;
   let res = await fetch(url);
   if (!res.ok) {
     throw Error('Unable to get favorites');
@@ -80,7 +80,7 @@ export const getUserFavorites = async userID => {
 }
 
 export const postFavorite = async (userId, movie) => {
-  let url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites`;
+  let url = `${process.env.REACT_APP_MOVIE_TRACKER_BACKEND_BASE_URL}/api/v1/users/${userId}/moviefavorites`;
   let options = {
     method: 'POST',
     body: JSON.stringify(movie),
@@ -96,7 +96,7 @@ export const postFavorite = async (userId, movie) => {
 
 
 export const deleteFavorite = async (userId, movie_id) => {
-  let url = `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${movie_id}`
+  let url = `${process.env.REACT_APP_MOVIE_TRACKER_BACKEND_BASE_URL}/api/v1/users/${userId}/moviefavorites/${movie_id}`
   let options = {
     method: 'DELETE',
     headers: {
