@@ -11,9 +11,7 @@ export const Favorites = ({movies, user, toggleFavorites}) => {
     return (
       <div className="favorites">
         <h1>
-          Please
-          <Link to="/login">login</Link>
-          to save favorites.
+          Please <Link to="/login">login</Link> to save favorites.
         </h1>
       </div>
     );
