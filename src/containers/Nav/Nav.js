@@ -10,22 +10,26 @@ export const Nav = ({user, logOut}) => {
 
   return (
     <header>
-      <div className='header__nav'>
-      <Link to='./' className=''>
-        <h1 className='header__logo'>
-        <img alt='MovieSnag logo' src={logo} className='logo'/>
-        ovie<span className='red'>Snag</span></h1>
-      </Link>
-        <NavLink exact to='/' className='NavLink' activeClassName="selectedLink" >  
+      <div className="header__nav">
+        <Link to="./" className="">
+          <h1 className="header__logo">
+            <img alt="MovieSnag logo" src={logo} className="logo"/>
+            ovie
+            <span className="red">
+              Snag
+            </span>
+          </h1>
+        </Link>
+        <NavLink exact to="/" className="NavLink" activeClassName="selectedLink" >  
           Home
         </NavLink>
-        <NavLink exact to='/now_playing' className='NavLink' activeClassName="selectedLink">  
+        <NavLink exact to="/now_playing" className="NavLink" activeClassName="selectedLink">
           Now Playing
         </NavLink>
-        <NavLink exact to='/upcoming' className='NavLink' activeClassName="selectedLink">  
+        <NavLink exact to="/upcoming" className="NavLink" activeClassName="selectedLink">
           Coming Soon
         </NavLink>
-        <NavLink exact to='/favorites' className='NavLink' activeClassName="selectedLink">  
+        <NavLink exact to="/favorites" className="NavLink" activeClassName="selectedLink">
           Favorites
         </NavLink>
       </div>
@@ -34,7 +38,7 @@ export const Nav = ({user, logOut}) => {
           <h3 className='header__user-name'>
             {user.name ? (<>{user.name} <a onClick={logOut} href='/login'>Logout</a></>): (<a href='/login'>Login</a>)}
           </h3>
-          <img className='user-avatar' alt='line drawing of a torso'src={avatar} />
+          <img className="user-avatar" alt="line drawing of a torso" src={avatar} />
           <p></p>
         </div>
       </div>
@@ -42,8 +46,8 @@ export const Nav = ({user, logOut}) => {
   );
 };
 
-export const mapStateToProps = state => ({
-  user: state.user
+export const mapStateToProps = (state) => ({
+  user: state.user,
 });
 
 export default connect(mapStateToProps)(Nav);

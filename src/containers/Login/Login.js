@@ -8,15 +8,15 @@ import {setUser, setFavorites} from '../../actions';
 import './Login.css';
 
 export class Login extends Component {
-  constructor(){
-    super()
-    this.state={
-      name:'',
-      email:'',
-      password:'',
-      isLoggedIn:false,
+  constructor() {
+    super();
+    this.state = {
+      name: '',
+      email: '',
+      password: '',
+      isLoggedIn: false,
       error: '',
-      logInError: false
+      logInError: false,
     }
   }
 
@@ -25,42 +25,39 @@ export class Login extends Component {
   }
 
   handleSubmit = async (e) => {
-    e.preventDefault()
-    this.createUser()
-    }
-    
-
+    e.preventDefault();
+    this.createUser();
+  }
 
   createUser = async () => {
     const { name, email, password } = this.state;
     const user = {
       name,
       email,
-      password
-    }
+      password,
+    };
     try {
-      let newUser = await createNewUser(user)
+      const newUser = await createNewUser(user)
       this.saveToStorage({ ...newUser, password: user.password })
       await this.props.setUser(newUser)
       this.setState({ isLoggedIn: true })
     } catch ({ message }) {
-      this.setState({ error: message })
+      this.setState({ error: message });
     }
   }
 
   logIn = async () => {
     const { email, password } = this.state;
-    let user = { email, password }
+    const user = { email, password };
     try {
-      let currentUser = await logInUser(user);
-      let userFavorites = await getUserFavorites(currentUser.id);
-      console.log({ ...currentUser, password: user.password })
-      this.saveToStorage({...currentUser, password: user.password})
+      const currentUser = await logInUser(user);
+      const userFavorites = await getUserFavorites(currentUser.id);
+      this.saveToStorage({ ...currentUser, password: user.password });
       await this.props.setFavorites(userFavorites)
       await this.props.setUser(currentUser)
       this.setState({isLoggedIn: true})
     } catch ({ message }) {
-      this.setState({ error: message, logInError:true })
+      this.setState({ error: message, logInError: true });
     }
   }
 
@@ -69,57 +66,69 @@ export class Login extends Component {
   }
 
   render = () => {
-    const {isLoggedIn, error, logInError} = this.state;
-    let errClass = logInError ? 'error' : ''
-    if(isLoggedIn) {
-      return <Redirect to='/' />
+    const { isLoggedIn, error, logInError } = this.state;
+    const errClass = logInError ? 'error' : '';
+    if (isLoggedIn) {
+      return <Redirect to="/" />;
     }
-    return(
-      <div className='login screen-cover'>
-        <form className='login__form' onSubmit={this.handleSubmit}>
+    return (
+      <div className="login screen-cover">
+        <form className="login__form" onSubmit={this.handleSubmit}>
 
-          <input 
-            placeholder='Name' 
-            name='name'
-            maxLength='15'
-            required 
+          <input
+            placeholder="Name"
+            name="name"
+            maxLength="15"
+            required
             value={this.state.name}
-            onChange={this.handleChange}/>
+            onChange={this.handleChange}
+          />
 
-          <input 
-          type='email'
-            placeholder='Email' 
+          <input
+            type="email"
+            placeholder="Email"
             className={errClass}
-            name='email' 
+            name="email"
             required
             value={this.state.email}
-            onChange={this.handleChange}/>
+            onChange={this.handleChange}
+          />
 
-          <input 
-            type='password' 
-            placeholder='Password' 
+          <input
+            type="password"
+            placeholder="Password"
             className={errClass}
-            name='password'
-            maxLength='20'
-            required 
+            name="password"
+            maxLength="20"
+            required
             value={this.state.password}
-            onChange={this.handleChange}/>
-          <button type='submit'
-          id='create-new'
-          className='login__btn'
-          >Create an account</button>
-          <button type='button' className='login__btn'
-            id='login'
+            onChange={this.handleChange}
+          />
+
+          <button
+            type="submit"
+            id="create-new"
+            className="login__btn"
+          >
+            Create an account
+          </button>
+          <button
+            type="button"
+            className="login__btn"
+            id="login"
             onClick={this.logIn}
-            >Login</button>
-            {error && <h3 className='error__login'>{error}</h3>}
+            >
+              Login
+          </button>
+          {error && <h3 className="error__login">{error}</h3>}
         </form>
       </div>
-    )
+    );
   }
 }
 
-export const mapDispatchToProps = dispatch => bindActionCreators({setUser, setFavorites}, dispatch)
+export const mapDispatchToProps = (dispatch) =>
+  bindActionCreators({ setUser, setFavorites }, dispatch);
 
 
 export default connect(null, mapDispatchToProps)(Login);

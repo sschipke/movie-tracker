@@ -1,14 +1,14 @@
-import  { combineReducers } from 'redux';
-import { movies } from './movies';
-import { user } from './user';
-import { upcomingMovies } from './upcomingMovies';
-import { favorites } from './favorites';
+import { combineReducers } from 'redux';
+import movies from './movies';
+import user from './user';
+import upcomingMovies from './upcomingMovies';
+import favorites from './favorites';
 
-const rootReducer = combineReducers ({ 
+const rootReducer = combineReducers({
   movies,
   upcomingMovies,
-  user, 
-  favorites
+  user,
+  favorites,
 });
 
 export default rootReducer;

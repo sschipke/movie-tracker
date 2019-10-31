@@ -18,8 +18,8 @@ exports[`MoviePage should match the snapshot with all the data passed in correct
     <div
       className="movie-page__rating"
     >
-      Rated: 
-       out of 10
+      Rated:
+      out of 10
     </div>
     <div
       className="movie-page__plot"
@@ -27,7 +27,7 @@ exports[`MoviePage should match the snapshot with all the data passed in correct
     <div
       className="movie-page__release"
     >
-      Released on 
+      Released on
     </div>
   </div>
 </div>

@@ -4,21 +4,21 @@ import MovieCard from '../../containers/MovieCard/MovieCard';
 import './MovieList.css';
 
 
-const MovieList = ({movies, toggleFavorites}) => {
-  let allMovies = movies.map(movie => 
-  <MovieCard 
-    toggleFavorites={toggleFavorites} 
-    movie={movie} 
-    key={Math.random()}
-  />);
+const MovieList = ({ movies, toggleFavorites }) => {
+  const allMovies = movies.map((movie) => (
+    <MovieCard
+      toggleFavorites={toggleFavorites}
+      movie={movie}
+      key={Math.random()}
+    />
+  ));
 
-  return(
-    <section className='section__movies'>
+  return (
+    <section className="section__movies">
       {allMovies}
     </section>
   );
-
-}
+};
 
 export default MovieList;
 

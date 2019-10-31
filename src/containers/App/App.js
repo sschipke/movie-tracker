@@ -2,33 +2,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import Login from '../Login/Login';
 import Nav from '../Nav/Nav';
 import Favorites from '../Favorites/Favorites';
-import Main from '../Main/Main'
+import Main from '../Main/Main';
 import MoviePage from '../../components/MoviePage/MoviePage';
 import {getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite, logInUser} from '../../util/apiCalls';
-import {setMovies, setUpcomingMovies, setFavorites, setUser} from '../../actions';
-import MovieList from '../../components/MovieList/MovieList'
+import { setMovies, setUpcomingMovies, setFavorites, setUser } from '../../actions';
+import MovieList from '../../components/MovieList/MovieList';
 import './App.css';
-import { connect } from 'react-redux';
 
-export class App extends Component { 
+export class App extends Component {
   async componentDidMount() {
-    const {setMovies, setUpcomingMovies, setFavorites, setUser, user} = this.props;
+    const {
+      setMovies,
+      setUpcomingMovies,
+      setFavorites,
+      setUser,
+      user
+    } = this.props;
     try {
       const data = await getMovies();
       setMovies(data);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
 
     try {
       const data = await getUpcomingMovies();
       setUpcomingMovies(data);
-    } catch(error) {
+    } catch (error) {
       console.log (error)
     };
 
@@ -49,31 +55,30 @@ export class App extends Component {
 
     if(user.name) {
       try {
-        let userFavs = await getUserFavorites(user.id);
+        const userFavs = await getUserFavorites(user.id);
         setFavorites(userFavs);
-      } catch(error) {
+      } catch (error) {
         console.log(error);
-      };
-    };
-    
+      }
+    }
   }
 
   toggleFavorites = (e, movie) => {
     e.preventDefault();
-    let userID = this.props.user.id;
-    if(this.props.favorites.map(fav => fav.title).includes(movie.title)) {
+    const userID = this.props.user.id;
+    if (this.props.favorites.map((fav) => fav.title).includes(movie.title)) {
       this.removeFavorite(userID, movie.movie_id);
     } else {
       this.addFavorite(userID, movie);
-    };
+    }
   }
 
   removeFavorite = async (userID,movieID) => {
     try {
       await deleteFavorite(userID, movieID);
-      let updatedFavorites = await getUserFavorites(userID);
+      const updatedFavorites = await getUserFavorites(userID);
       this.props.setFavorites(updatedFavorites);
-    } catch({message}) {
+    } catch ({ message }) {
       console.log(message);
     }
   }
@@ -81,11 +86,11 @@ export class App extends Component {
   addFavorite = async (userID, movie) => {
     try {
       await postFavorite(userID, movie);
-      let currentFavorites = await getUserFavorites(userID);
+      const currentFavorites = await getUserFavorites(userID);
       this.props.setFavorites(currentFavorites);
-    } catch({message}) {
+    } catch({ message }) {
       console.log(message);
-    };
+    }
   };
 
   logOut = () => {
@@ -113,11 +118,11 @@ export class App extends Component {
   };
 }
 
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state) => ({
   movies: state.movies,
   upcomingMovies: state.upcomingMovies,
   favorites: state.favorites,
-  user: state.user
+  user: state.user,
 });
 
 export const mapDispatchToProps = dispatch => (bindActionCreators({

@@ -1,7 +1,7 @@
-import {favorites} from './favorites';
-import {movies} from './movies';
-import {upcomingMovies} from './upcomingMovies';
-import {user} from './user';
+import favorites from './favorites';
+import movies from './movies';
+import upcomingMovies from './upcomingMovies';
+import user from './user';
 
 describe('favorites reducer', () => {
   it('should return the initial state', () => {

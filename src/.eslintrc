@@ -1,0 +1,10 @@
+// Use this file as a starting point for your project's .eslintrc. 
+// By default we're using airbnb's .eslintrc
+
+{
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    // "react/forbid-prop-types": "disabled",
+  }
+}
