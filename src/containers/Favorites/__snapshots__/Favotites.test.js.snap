@@ -5,13 +5,13 @@ exports[`Favorites no user should match the snapshot with no user 1`] = `
   className="favorites"
 >
   <h1>
-    Please
+    Please 
     <Link
       to="/login"
     >
       login
     </Link>
-    to save favorites.
+     to save favorites.
   </h1>
 </div>
 `;
