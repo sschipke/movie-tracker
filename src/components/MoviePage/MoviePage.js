@@ -9,14 +9,11 @@ const MoviePage = (movie) => {
       <div className="movie__info">
         <div className="movie-page__title">{movie.title}</div>
         <div className="movie-page__rating">
-          Rated: 
-          {movie.vote_average} 
-          out of 10
+          Rated: {movie.vote_average} out of 10
         </div>
         <div className="movie-page__plot">{movie.overview}</div>
         <div className="movie-page__release">
-          Released on 
-          {movie.release_date}
+          Released on {movie.release_date}
         </div>
       </div>
     </div>
