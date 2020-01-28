@@ -10,13 +10,14 @@ import Nav from '../Nav/Nav';
 import Favorites from '../Favorites/Favorites';
 import Main from '../Main/Main';
 import MoviePage from '../../components/MoviePage/MoviePage';
-import {getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite, logInUser} from '../../util/apiCalls';
+import { getMovies, getUpcomingMovies, getUserFavorites, deleteFavorite, postFavorite, logInUser, wakeUpHeroku} from '../../util/apiCalls';
 import { setMovies, setUpcomingMovies, setFavorites, setUser } from '../../actions';
 import MovieList from '../../components/MovieList/MovieList';
 import './App.css';
 
 export class App extends Component {
   async componentDidMount() {
+    wakeUpHeroku();
     const {
       setMovies,
       setUpcomingMovies,

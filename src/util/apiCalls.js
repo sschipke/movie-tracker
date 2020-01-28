@@ -109,3 +109,7 @@ export const deleteFavorite = async (userId, movie_id) => {
   }
 
 }
+
+export const wakeUpHeroku = async () => {
+  const res = await fetch(process.env.REACT_APP_MOVIE_TRACKER_BACKEND_BASE_URL);
+};
