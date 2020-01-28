@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 import avatar from '../../images/user-avatar.svg';
 import logo from '../../images/MovieSnagLogo.png';
 
-export const Nav = ({user, logOut}) => {
+export const Nav = ({ user, logOut }) => {
 
   return (
     <header>
       <div className="header__nav">
-        <Link to="./" className="">
+        <Link to="/" className="">
           <h1 className="header__logo">
             <img alt="MovieSnag logo" src={logo} className="logo"/>
             ovie
@@ -53,5 +53,6 @@ export const mapStateToProps = (state) => ({
 export default connect(mapStateToProps)(Nav);
 
 Nav.propTypes = {
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  logOut: PropTypes.func.isRequired,
 }
