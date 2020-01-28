@@ -3,6 +3,7 @@
   background-color:rgb(30, 30, 30);
   position: relative;
   height:fit-content;
+  min-width: 230px;
 }
 
 .card__image {
